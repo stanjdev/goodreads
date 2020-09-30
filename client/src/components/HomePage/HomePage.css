@@ -1,0 +1,9 @@
+@media screen and (max-width: 768px) {
+  .bannerlogo {
+    width: 100%;
+  }
+  #title {
+    font-size: 2.5em;
+  }
+}
+/*# sourceMappingURL=HomePage.css.map */

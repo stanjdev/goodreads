@@ -1,0 +1,29 @@
+.detailsbg {
+  // background-color: opacify(white, 0.5);
+  opacity: 0.5;
+  // margin-top: 10%;
+  height: 90vh;
+  width: 90vw;
+  position: absolute;
+}
+
+#details {
+  margin-top: 10%;
+}
+
+// .detailsbg {
+//   // background-color: opacify(black, 0.5);
+//   opacity: 0.7;
+//   // margin-top: 10%;
+//   height: 1000px;
+//   width: 90vh;
+//   position: absolute;
+// }
+
+@media screen and (max-width: 768px) {
+  .ratingsInfo {
+    display: flex;
+    justify-content: center;
+    // border: solid green 1px;
+  }
+}

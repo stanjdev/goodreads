@@ -1,0 +1,137 @@
+// @import "~bootstrap/scss/bootstrap";
+
+$smartphone: "(max-width: 768px)";
+$tablet: "(min-width: 768px)";
+$desktop: "(min-width: 1200px)";
+
+
+@media #{$tablet}, #{$smartphone}{
+    body {
+        // height: 100vh;
+        text-align: center;
+        background: 
+            linear-gradient(to right, rgb(235, 235, 249), blanchedalmond),
+            url("../src/imgs/books-bg.jpg") no-repeat center fixed;
+        background-blend-mode: multiply;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        -ms-background-size: cover;
+    }
+
+}
+
+@media screen and (min-width: 992px) {
+    .welcome-sm {
+        display: none;         
+    }
+}
+
+@media screen and (min-width: 1px) and (max-width: 992px) { 
+    .welcome-lg {
+        display: none;
+    }
+    .dropdown {
+        display: none;
+    }
+
+    .dropdown-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        text-align: center;
+        height: 200px;
+    }
+    .isbnCol {
+        display: none;
+    }
+}
+
+// .dropdown-menu {
+//     display: none;
+// }
+
+@media screen and (min-width: 8px) and (max-width: 550px){
+    .bannerlogo {
+        width: 88vw;
+    }
+
+    body {
+        background: 
+            linear-gradient(to right, rgb(235, 235, 249), blanchedalmond),
+            url("../src/imgs/books-bg.jpg") no-repeat center fixed;
+        background-blend-mode: multiply;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        -ms-background-size: cover;
+    }
+
+      .welcome-sm {
+          display: block;
+      }
+
+      .welcome-lg {
+          display: none;
+      }
+
+      body {
+        width: 100%;
+      }
+}
+
+
+
+
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.login-form, .register-form, .list {
+    margin-top: 20%;
+  }
+
+  .search-form {
+    margin-top: 50%;
+  }
+
+
+
+.title {
+    text-align: center;
+    letter-spacing: 3px;
+    opacity: 0.5;
+
+    .subtitle {
+        font-size: large;
+    }
+}
+
+
+.logout {
+    // position: absolute;
+    // top: 10px;
+    // right: 10px;
+    /* border: solid; */
+}
+
+.flashmessage {
+    list-style: none;
+}
+
+
+.animateMe {
+    transition: all 0.3s ease;
+    
+    
+    &:hover {
+        // transform: scale(1%, 1%);
+    }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "myserver",
+  "version": "0.0.0",
+  "private": true,
+  "engines": {
+    "node": "14.8.0",
+    "npm": "6.14.7"
+  },
+  "scripts": {
+    "start": "nodemon app.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "fast-csv": "^4.3.2",
+    "helmet": "^4.1.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.4",
+    "pg": "^8.3.3",
+    "request": "^2.88.2"
+  }
+}

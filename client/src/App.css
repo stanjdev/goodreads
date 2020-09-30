@@ -1,0 +1,111 @@
+@media (min-width: 768px), (max-width: 768px) {
+  body {
+    text-align: center;
+    background: -webkit-gradient(linear, left top, right top, from(#ebebf9), to(blanchedalmond)), url("../src/imgs/books-bg.jpg") no-repeat center fixed;
+    background: linear-gradient(to right, #ebebf9, blanchedalmond), url("../src/imgs/books-bg.jpg") no-repeat center fixed;
+    background-blend-mode: multiply;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .welcome-sm {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1px) and (max-width: 992px) {
+  .welcome-lg {
+    display: none;
+  }
+  .dropdown {
+    display: none;
+  }
+  .dropdown-menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    text-align: center;
+    height: 200px;
+  }
+  .isbnCol {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 8px) and (max-width: 550px) {
+  .bannerlogo {
+    width: 88vw;
+  }
+  body {
+    background: -webkit-gradient(linear, left top, right top, from(#ebebf9), to(blanchedalmond)), url("../src/imgs/books-bg.jpg") no-repeat center fixed;
+    background: linear-gradient(to right, #ebebf9, blanchedalmond), url("../src/imgs/books-bg.jpg") no-repeat center fixed;
+    background-blend-mode: multiply;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+  }
+  .welcome-sm {
+    display: block;
+  }
+  .welcome-lg {
+    display: none;
+  }
+  body {
+    width: 100%;
+  }
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.login-form, .register-form, .list {
+  margin-top: 20%;
+}
+
+.search-form {
+  margin-top: 50%;
+}
+
+.title {
+  text-align: center;
+  letter-spacing: 3px;
+  opacity: 0.5;
+}
+
+.title .subtitle {
+  font-size: large;
+}
+
+.logout {
+  /* border: solid; */
+}
+
+.flashmessage {
+  list-style: none;
+}
+
+.animateMe {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+/*# sourceMappingURL=App.css.map */
