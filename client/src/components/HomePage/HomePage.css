@@ -1,9 +1,36 @@
 @media screen and (max-width: 768px) {
+  .homePage {
+    position: relative;
+    top: -2.5em;
+  }
   .bannerlogo {
     width: 100%;
   }
   #title {
-    font-size: 2.5em;
+    font-size: 2.3em;
+  }
+}
+
+.homePage {
+  -webkit-animation: introAnimate 0.5s ease 0.3s both alternate;
+          animation: introAnimate 0.5s ease 0.3s both alternate;
+}
+
+@-webkit-keyframes introAnimate {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes introAnimate {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 /*# sourceMappingURL=HomePage.css.map */

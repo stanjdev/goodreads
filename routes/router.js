@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const pool = require('../db');
+const cors = require('cors');
 
+router.use(cors())
 
 // Connected routers:
 // we're using the searchRouter middleware!
@@ -19,11 +21,17 @@ router.use('/details', detailsRouter);
 
 
 
-router.get("/", (req, res) => {
-  res.send({ response: "Server up and running from the root! Message from router.js" }).status(200);
-});
+// router.get("/", (req, res) => {
+//   res.send({ response: "Server up and running from the root! Message from router.js" }).status(200);
+// });
 
 
+// CATCH-ALL
+router.get("*", (req,res) => {
+  // res.sendFile(path.join(__dirname, "client/build/index.html"));
+  res.send("uh oh!")
+  // res.redirect('/');
+})
 
 // app.route or app.get for the '/logout'. clear the session. say "You have successfully logged out. Thanks for visiting!" redirect to "/" page - or just use flash message and redirect user to home page
 

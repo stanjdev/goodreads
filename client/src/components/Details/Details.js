@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useLocation, Redirect } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import Logo from './goodreads.png';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -7,16 +7,35 @@ import "./Details.css";
 import Comment from '../Comment/Comment';
 
 
-export default function Details(props) {
+export default function Details() {
   const [ratingOption, setRatingOption] = useState(5);
   const [userComment, setUserComment] = useState("");
   const [goodreads, setGoodReads] = useState();
+  const [bookInfo, setBookInfo] = useState({});
   const [comments, setComments] = useState([]);
-  const location = useLocation();
+  // let location = useLocation();
   const loggedIn = useSelector(state => state.sessionReducer.loggedIn);
   const currentUser = useSelector(state => state.sessionReducer);
   const isMounted = useRef(false);
   
+  // console.log(bookInfo)
+
+  // if (!location.state) {
+  //   location = {state: {results: "default"}}
+  // }
+
+  // const result = {
+  //   isbn: location.state.results.isbn,
+  //   title: location.state.results.title,
+  //   author: location.state.results.author,
+  //   year: location.state.results.year,
+  //   book_id: location.state.results.book_id
+  // }
+
+  // https://reactrouter.com/web/example/url-params
+  const { book_id } = useParams();
+  // console.log(book_id);
+
   // console.log(location.state.results);
 
   useEffect(() => {
@@ -24,32 +43,33 @@ export default function Details(props) {
     // const signal = abortController.signal;
     isMounted.current = true;
 
-    if (isMounted.current) {
+    if (isMounted.current && loggedIn) {
       fetchData(); // for GETTING comments and book data
+      // console.log(bookInfo)
     }
 
     return function cleanup() {
       // abortController.abort();
       isMounted.current = false;
     };
-  })
+  }, []);
 
-
-  const result = {
-    isbn: location.state.results.isbn,
-    title: location.state.results.title,
-    author: location.state.results.author,
-    year: location.state.results.year,
-    book_id: location.state.results.book_id
-  }
 
   async function fetchData() {
-    const response = await fetch(`/details/${location.state.results.book_id}`);
+    // const response = await fetch(`/details/${location.state.results.book_id}`);
+    const response = await fetch(`/details/${book_id}`);
+    if (response.status === 202) {
+      console.log(response)
+      alert("book not found!")
+      window.location = "/search"
+    }
     const data = await response.json();
-    // console.log(data)
+    console.log(data.bookInfo);
     setGoodReads(data.result.books[0]);
     setComments(data.comment_list);
+    setBookInfo(data.bookInfo)
   }
+  
   // const fetchData = (signal) => {
   //   fetch(`/details/${location.state.results.book_id}`, {signal: signal})
   //     .then(result => result.json())
@@ -67,12 +87,15 @@ export default function Details(props) {
       userRating: ratingOption,
       userComment: userComment
     }
-    return await axios.post(`/details/${location.state.results.book_id}`, userData)
+    const commentAdd = await axios.post(`/details/${book_id}`, userData)
       .then(response => {
         if (response.status === 202) alert(response.data)
         // base case that user already commented. handled in the backend with an alert to the frontend on status code 202 again? 
         // on success, render the new comment, rating, and user's first name onto the page.
-        else console.log(response)
+        else {
+          console.log(response)
+          window.location = `/details/${book_id}`;
+        }
       })
       .catch(err => console.log(err))
   }
@@ -88,10 +111,9 @@ export default function Details(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     addComment();
-    fetchData();
   }
 
-
+  // console.log(comments)
 
   // eslint-disable-next-line no-lone-blocks
   {return loggedIn ? (
@@ -105,10 +127,10 @@ export default function Details(props) {
                     <div className="jumbotron">
                       <div className="container">
                         <h1 className="display-4">Book Details</h1>
-                        <p className="lead">Title: {result.title}</p>
-                        <p className="lead">Author: {result.author}</p>
-                        <p className="lead">Year: {result.year}</p>
-                        <p className="lead">ISBN: <a href={`https://www.goodreads.com/book/isbn/${result.isbn}`} target="_blank" rel="noopener noreferrer">{result.isbn}</a></p>
+                        <p className="lead">Title: {bookInfo ? bookInfo.title : ""}</p>
+                        <p className="lead">Author: {bookInfo ? bookInfo.author: ""}</p>
+                        <p className="lead">Year: {bookInfo ? bookInfo.year: ""}</p>
+                        <p className="lead">ISBN: {bookInfo ? <a href={`https://www.goodreads.com/book/isbn/${bookInfo.isbn}`} target="_blank" rel="noopener noreferrer">{bookInfo.isbn}</a> : "" }</p>
                       </div>
                     </div>
                   </div>
@@ -120,18 +142,18 @@ export default function Details(props) {
                         Average Rating: {goodreads ? <span className="badge badge-light">{ goodreads["average_rating"] }</span> : ""}
                       </button>
                       <button type="button" className="btn btn-secondary mb-3">
-                        # of Ratings: {goodreads ? <span className="badge badge-light">{ goodreads["ratings_count"]}</span> : ""}
+                        # of Ratings: {goodreads ? <span className="badge badge-light">{ goodreads["work_ratings_count"]}</span> : ""}
                       </button>
-                      {goodreads ? <a href={`https://www.goodreads.com/book/isbn/${result.isbn}`} target="_blank" rel="noopener noreferrer"><button type="button" className="btn btn-secondary mb-3" > GoodReads Page Link </button> </a>: ""}
+                      {goodreads && bookInfo ? <button type="button" className="btn btn-secondary"><a style={{color: "white"}} href={`https://www.goodreads.com/book/isbn/${bookInfo.isbn}`} target="_blank" rel="noopener noreferrer"> GoodReads Page Link  </a></button> : ""}
                     </div>
                   </div>
                 </div>
 
                 <h3>Comments</h3>
 
-                {comments.length > 0 ? comments.map((comment, idx) => {
+                {comments.length > 0 ? comments.map((comment) => {
                     return (
-                      <Comment comment={comment} key={idx}/>
+                      <Comment comment={comment} key={comment.userid} userid={comment.userid} bookid={comment.book_id}/>
                     )
                 }) : null}
 

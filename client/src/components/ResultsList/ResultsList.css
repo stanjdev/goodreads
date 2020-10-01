@@ -1,1 +1,12 @@
-/* No CSS *//*# sourceMappingURL=ResultsList.css.map */
+@media screen and (max-width: 768px) {
+  .resultsContainer {
+    width: 100%;
+  }
+  td {
+    font-size: 85%;
+  }
+  th {
+    font-size: 90%;
+  }
+}
+/*# sourceMappingURL=ResultsList.css.map */

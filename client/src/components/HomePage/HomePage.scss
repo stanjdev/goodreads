@@ -1,8 +1,23 @@
 @media screen and (max-width: 768px) {
+  .homePage {
+    position: relative;
+    top: -2.5em;
+    // border: solid lightseagreen 1px;
+  }
+  
   .bannerlogo {
     width: 100%;
   }
   #title {
-    font-size: 2.5em;
+    font-size: 2.3em;
   }
+}
+
+.homePage {
+  animation: introAnimate 0.5s ease 0.3s both alternate;
+}
+
+@keyframes introAnimate {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }

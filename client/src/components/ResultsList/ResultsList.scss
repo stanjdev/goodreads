@@ -2,7 +2,15 @@
 
   .resultsContainer {
     // border: solid red 1px;
-    // width: 90vw;
-
+    width: 100%;
   }
+
+  td {
+    font-size: 85%;
+  }
+
+  th {
+    font-size: 90%;
+  }
+
 }

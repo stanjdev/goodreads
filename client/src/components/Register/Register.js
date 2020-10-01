@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect, NavLink } from 'react-router-dom';
 
@@ -23,16 +23,16 @@ export default function Register() {
         if (response.status === 202) {
           alert(response.data)
         } else {
-          console.log(response)
+          // console.log(response)
           setSuccess(true);
         }
       })
       .catch(err => console.log(err))
   }
 
-  useEffect(() => {
-    console.log(success)  
-  }, [success])
+  // useEffect(() => {
+  //   console.log(success)  
+  // }, [success])
 
   return(
       <div className="container">

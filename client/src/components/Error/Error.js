@@ -1,13 +1,14 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function Error() {
 
   return(
     <div>
       <div class="alert alert-danger" role="alert">
-          <p class="mt-3">Return and try again!</p>  
+          <p class="mt-3">Page Not Found!</p>  
       </div> 
-      <a class="btn btn-primary" href="/" role="button">Go Back</a>
+      <NavLink class="btn btn-primary" to="/" role="button">Go Back</NavLink>
     </div>
   )
 }

@@ -63,8 +63,6 @@ onClick={() => dispatch(logoutAction())}
 
 
 
-
-
   return (
     <Router>
       <header>
@@ -78,6 +76,12 @@ onClick={() => dispatch(logoutAction())}
           <Route exact path="/register">
             <Register />
           </Route>
+          {/* <Route exact path="/details/:book_id/:user_id/:review_id" >
+            <Details />
+          </Route> */}
+          {/* <Route exact path="/details/:book_id/:user_id" >
+            <Details />
+          </Route> */}
           <Route exact path="/details/:book_id" >
             <Details />
           </Route>
@@ -92,6 +96,9 @@ onClick={() => dispatch(logoutAction())}
           </Route>
           <Route exact path="/">
             <HomePage />
+          </Route>
+          <Route path="">
+            <Error />
           </Route>
         </Switch>
       </div>

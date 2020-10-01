@@ -52,7 +52,7 @@ $desktop: "(min-width: 1200px)";
 //     display: none;
 // }
 
-@media screen and (min-width: 8px) and (max-width: 550px){
+@media screen and (min-width: 1px) and (max-width: 550px){
     .bannerlogo {
         width: 88vw;
     }
@@ -67,6 +67,7 @@ $desktop: "(min-width: 1200px)";
         -moz-background-size: cover;
         -o-background-size: cover;
         -ms-background-size: cover;
+        overflow-x: hidden;
     }
 
       .welcome-sm {

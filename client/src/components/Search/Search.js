@@ -33,7 +33,7 @@ export default function Search() {
 
               {location.state ? 
                 <FlashMessage duration={5000}>
-                  <h5 className="col-md-6 col-sm-12" style={{color: 'green', position: 'absolute', top: '0.5em'}}>Login successful!</h5>
+                  <h5 className="col-md-6 col-sm-12" style={{color: 'lightseagreen', position: 'absolute', top: '0.5em'}}>Login successful!</h5>
                 </FlashMessage> 
               : null}
 

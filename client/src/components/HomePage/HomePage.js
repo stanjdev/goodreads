@@ -6,7 +6,7 @@ import "./HomePage.css";
 export default function HomePage() {
 
   return(
-    <div className="container mt-5 animate__animated animate__zoomInUp">
+    <div className="homePage container mt-5 animate__animated animate__zoomInUp">
       <div className="row">
         <div className="col col-7 my-5">
             <div className="container">

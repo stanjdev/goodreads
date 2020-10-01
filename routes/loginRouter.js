@@ -20,7 +20,7 @@ loginRouter.post('/', (req, res, next) => {
   // console.log(loginInfo);
   pool.query(`SELECT * FROM users WHERE email='${loginInfo[0]}'`, (q_err, q_res) => {
     if (q_err) next(q_err);
-    console.log(q_res.rows[0]);
+    // console.log(q_res.rows[0]);
     if (q_res.rows.length < 1) {
       res.status(202).send("Email does not exist")
       return

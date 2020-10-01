@@ -29,11 +29,11 @@ const NavBar = () => {
     const data = {
       query: e.target.input_search.value
     }
-    console.log(data.query)
+    // console.log(data.query)
     e.target.reset();
     return await axios.post('/search', data)
       .then(response => {
-        console.log(response.data)
+        // console.log(response.data)
         setSearchResults(response.data)
       })
       // .then(res => console.log("res received back!", res))

@@ -9,7 +9,9 @@ export default function ResultsList() {
 
   const location = useLocation();
   // console.log(location.state.results[0].author)
+  console.log(location.state)
   const loggedIn = useSelector(state => state.sessionReducer.loggedIn);
+
 
   {return loggedIn ? (
       <div>
@@ -29,11 +31,15 @@ export default function ResultsList() {
                 </thead>
                 <tbody>
 
-                  {location.state.results.length < 1 ? <tr style={{ color: "crimson", marginTop: "1em", fontWeight: 'bold', textTransform: "uppercase"}}><td>No results found!</td></tr> : location.state.results.map(book => {
-                      return (
-                        <Book book={book} key={book.isbn}/>
-                      )
-                  })}
+                  {
+                    location.state ? 
+                    (location.state.results.length < 1 ? 
+                    <tr style={{ color: "crimson", marginTop: "1em", fontWeight: 'bold', textTransform: "uppercase"}}><td>No results found!</td></tr> 
+                    : location.state.results.map(book => {
+                      return <Book book={book} key={book.isbn}/>
+                    }))
+                    : <Redirect to={{pathname: "/search"}}/>
+                  }
 
                 </tbody>
             </table>

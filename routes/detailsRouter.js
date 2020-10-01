@@ -1,4 +1,3 @@
-const { request } = require('express');
 const express = require('express');
 const detailsRouter = new express.Router();
 const pool = require('../db');
@@ -11,26 +10,35 @@ const apiKey = process.env.GOODREADS_APIKEY;
 /* DETAILS Page */
 
 detailsRouter.get('/:book_id', async (req, res, next) => {
+
+  // BookID param must be integer:
+  // console.log(!/\D/gi.test(req.params.book_id))
+  if (/\D/gi.test(req.params.book_id)) return res.status(202).send("BookID must be an integer only!")
   
-  // console.log(req.params.book_id)
   // login is required
   // set result variable as: result = db.execute("SELECT * FROM books WHERE book_id = :book_id", {"book_id": book_id}).fetchone()
   const book = await pool.query(`SELECT * FROM books WHERE book_id = '${req.params.book_id}'`)
-  // console.log(book.rows[0].book_id)
-  const resultISBN = book.rows[0].isbn;
+  // console.log(book.rows)
+
+  if (book.rows.length > 0) {
+    const resultISBN = book.rows[0].isbn;
+    const comment_list = await pool.query(`SELECT u.userID, u.firstname, u.lastname, u.email, r.rating, r.comment, r.book_id, r.review_id
+                                            FROM reviews r 
+                                            JOIN users u 
+                                            ON u.userID = r.user_id 
+                                            WHERE book_id = '${req.params.book_id}'`);
+    // console.log(comment_list.rows);
   
-  const comment_list = await pool.query(`SELECT u.firstname, u.lastname, u.email, r.rating, r.comment 
-                                          FROM reviews r 
-                                          JOIN users u 
-                                          ON u.userID = r.user_id 
-                                          WHERE book_id = '${req.params.book_id}'`);
-  // console.log(comment_list.rows);
-
-  // Sample: https://www.goodreads.com/book/review_counts.json?isbns=1416949658&key=YOUR_KEY
-
-  fetch(`https://www.goodreads.com/book/review_counts.json?isbns=${resultISBN}&key=${apiKey}`)
-    .then(response => response.json())
-    .then(result => res.status(200).send({result: result, comment_list: comment_list.rows}))
+    // Sample: https://www.goodreads.com/book/review_counts.json?isbns=1416949658&key=YOUR_KEY
+  
+    fetch(`https://www.goodreads.com/book/review_counts.json?isbns=${resultISBN}&key=${apiKey}`)
+      .then(response => response.json())
+      .then(result => res.status(200).send({result: result, comment_list: comment_list.rows, bookInfo: book.rows[0]}))
+      .catch(err => res.send(err))
+  } else {
+    res.status(202).send("Book not found!")
+  }
+  
 
   // Get API data from GoodReads and link to GoodReads page
   // try( set goodreads variable: goodreads = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": key, "isbns": result.isbn}))
@@ -43,12 +51,10 @@ detailsRouter.get('/:book_id', async (req, res, next) => {
   // if there is not that result variable: error "Invalid book ID"
 
   // return the unique book's details page: render_template("details.html", result=result, comment_list=comment_list , book_id=book_id, goodreads=goodreads.json()["books"][0]) # --- removing this worked..? 
-})
+});
 
 
-
-
-
+// POST
 detailsRouter.post('/:book_id', (req, res, next) => {
   // login is required
   // When user is about to post a comment. Check if user commented on this particular book before:
@@ -70,7 +76,7 @@ detailsRouter.post('/:book_id', (req, res, next) => {
                   if (q_err) next(q_err);
                   if (q_res) console.log(q_res.rows);
                   if (q_res && q_res.rows.length > 0) res.status(202).send("You've already reviewed this book!")
-                  else pool.query(`INSERT INTO reviews (user_id, book_id, rating, comment) VALUES (${user[2]}, ${req.params.book_id}, ${user[3]}, '${user[4]}')`);
+                  else pool.query(`INSERT INTO reviews (user_id, book_id, rating, comment) VALUES (${user[2]}, ${req.params.book_id}, ${user[3]}, '${user[4]}')`, (q_err, q_res) => res.send(q_res));
                 });
 
   // if (!userComment) res.status(202).send("Comment section cannot be empty!");
@@ -91,7 +97,48 @@ detailsRouter.post('/:book_id', (req, res, next) => {
   */
  
  // success - db.commit(), "thanks for leaving a review!", redirect to that same details page. review should be updated now.
-})
+});
+
+
+
+
+// PUT
+detailsRouter.put('/:book_id/:user_id/:review_id/', async (req, res, next) => {
+  try {
+    const { comment, ratingOption } = req.body;
+    const { book_id, user_id, review_id } = req.params;
+    console.log(book_id, user_id, review_id, comment, ratingOption);
+    const updateComment = await pool.query(
+      "UPDATE reviews SET comment = $1, rating = $4 WHERE review_id = $2 AND user_id = $3", 
+      [comment, review_id, user_id, ratingOption]
+    );
+  // this works: UPDATE reviews SET comment = 'I like butterflies' WHERE review_id = 33 AND user_id = 155;
+    res.json("comment was updated!")
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+
+
+
+
+// DELETE
+detailsRouter.delete('/:book_id/:user_id', async (req, res, next) => {
+  try {
+    const { book_id, user_id } = req.params;
+    console.log(book_id, user_id)
+    const deleteComment = await pool.query(`DELETE FROM reviews WHERE book_id = '${book_id}' AND user_id = '${user_id}'`)
+    res.json("Comment was deleted!")
+  } 
+  catch (error) {
+    console.error(error);
+  }
+});
+
+
+
+
 
 
 module.exports = detailsRouter;

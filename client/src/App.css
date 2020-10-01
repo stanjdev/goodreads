@@ -44,7 +44,7 @@
   }
 }
 
-@media screen and (min-width: 8px) and (max-width: 550px) {
+@media screen and (min-width: 1px) and (max-width: 550px) {
   .bannerlogo {
     width: 88vw;
   }
@@ -57,6 +57,7 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
+    overflow-x: hidden;
   }
   .welcome-sm {
     display: block;

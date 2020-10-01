@@ -23,7 +23,7 @@ export default function Login() {
         if (response.status === 202) {
           alert(response.data)
         } else {
-          console.log(response.data);
+          // console.log(response.data);
           dispatch(loginAction(response.data.firstname, response.data.email, response.data.userid));
           // dispatch to set login reducer to be true from here? 
         }
@@ -35,7 +35,7 @@ export default function Login() {
     <div>
       {location.state ? 
         <FlashMessage duration={5000}>
-          <h5 className="col-md-6 col-sm-12" style={{color: 'green', position: 'absolute'}}>Registration successful!</h5>
+          <h5 className="col-md-6 col-sm-12" style={{color: 'lightseagreen', position: 'absolute', left: '-2.5em', marginTop: "0.5em"}}>Registration successful!</h5>
         </FlashMessage> 
       : null}
 
