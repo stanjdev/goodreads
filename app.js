@@ -24,10 +24,6 @@ app.use(bodyParser.json());
 // This will bypass CORS error when doing fetch request from a different client to this server.
 app.use(cors())
 
-const router = require("./routes/router");
-// we're using the router middleware!
-app.use(router);
-
 
 // // react-router 'match' Attempt from https://stackoverflow.com/questions/35524117/express-status-404-with-react-router
 // app.use((req, res, next) => {
@@ -55,6 +51,9 @@ if (process.env.NODE_ENV === "production") {
   // })
 }
 
+const router = require("./routes/router");
+// we're using the router middleware!
+app.use(router);
 
 
 const server = http.createServer(app);
