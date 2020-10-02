@@ -27,12 +27,12 @@ router.use('/details', detailsRouter);
 
 
 // CATCH-ALL
-router.get("*", (req,res) => {
-  // res.sendFile(path.join(__dirname, "client/build/index.html"));
-  // res.send("uh oh! catch all")
-  res.render("uh oh! catch all")
-  // res.redirect('/');
-})
+// router.get("*", (req,res) => {
+//   // res.sendFile(path.join(__dirname, "client/build/index.html"));
+//   // res.send("uh oh! catch all")
+//   res.render("uh oh! catch all")
+//   // res.redirect('/');
+// })
 
 // app.route or app.get for the '/logout'. clear the session. say "You have successfully logged out. Thanks for visiting!" redirect to "/" page - or just use flash message and redirect user to home page
 

@@ -21,12 +21,9 @@ app.use(bodyParser.json());
 // This will bypass CORS error when doing fetch request from a different client to this server.
 app.use(cors())
 
-
 const router = require("./routes/router");
-// Using the router middleware!
+// we're using the router middleware!
 app.use(router);
-
-
 
 
 if (process.env.NODE_ENV === "production") {
@@ -34,11 +31,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
   // app.use("/", express.static("./client/build"))
 
-  app.get("/*", (req,res) => {
+  router.get("/*", (req,res) => {
     res.sendFile(path.join(__dirname, "client/build/index.html"));
   })
 }
-
 
 
 
