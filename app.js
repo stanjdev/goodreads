@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 
-import { match, RouterContext } from 'react-router';
+// import { match, RouterContext } from 'react-router';
 
 
 // create new express app and save it as "app"
@@ -43,7 +43,7 @@ app.use(cors())
 
 if (process.env.NODE_ENV === "production") {
   // serve static content(from when you run `npm run build`. aim for the index.html in your 'build' folder)
-  app.use(express.static(path.join(__dirname, "client/build")));
+  app.use(express.static(__dirname, "client/build"));
   // app.use("/", express.static("./client/build"))
 
   // app.get("*", (req,res) => {
