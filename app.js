@@ -29,31 +29,30 @@ const router = require("./routes/router");
 app.use(router);
 
 
-// react-router 'match' Attempt from https://stackoverflow.com/questions/35524117/express-status-404-with-react-router
-app.use((req, res, next) => {
-  match({ router, location: req.url }, (error, redirectLocation, renderProps) => {
-    if (error) {
-      res.status(500).send(error.message)
-    } else if (redirectLocation) {
-      res.redirect(302, redirectLocation.pathname + redirectLocation.search) 
-    } else if (renderProps) {
-      res.status(200).send("match works!")
-    } else {
-      res.status(404).send("Not Found")
-    }
-  })
-});
+// // react-router 'match' Attempt from https://stackoverflow.com/questions/35524117/express-status-404-with-react-router
+// app.use((req, res, next) => {
+//   match({ router, location: req.url }, (error, redirectLocation, renderProps) => {
+//     if (error) {
+//       res.status(500).send(error.message)
+//     } else if (redirectLocation) {
+//       res.redirect(302, redirectLocation.pathname + redirectLocation.search) 
+//     } else if (renderProps) {
+//       res.status(200).send("match works!")
+//     } else {
+//       res.status(404).send("Not Found")
+//     }
+//   })
+// });
 
 
 if (process.env.NODE_ENV === "production") {
-
   // serve static content(from when you run `npm run build`. aim for the index.html in your 'build' folder)
   app.use(express.static(path.join(__dirname, "client/build")));
   // app.use("/", express.static("./client/build"))
 
-  app.get("/*", (req,res) => {
-    res.sendFile(path.join(__dirname, "client/build/index.html"));
-  })
+  // app.get("*", (req,res) => {
+  //   res.sendFile(path.join(__dirname, "client/build/index.html"));
+  // })
 }
 
 
