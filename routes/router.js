@@ -29,7 +29,8 @@ router.use('/details', detailsRouter);
 // CATCH-ALL
 router.get("*", (req,res) => {
   // res.sendFile(path.join(__dirname, "client/build/index.html"));
-  res.send("uh oh!")
+  // res.send("uh oh! catch all")
+  res.render("uh oh! catch all")
   // res.redirect('/');
 })
 
