@@ -80,7 +80,11 @@ detailsRouter.post('/:book_id', (req, res, next) => {
                   if (q_err) next(q_err);
                   if (q_res) console.log(q_res.rows);
                   if (q_res && q_res.rows.length > 0) res.status(202).send("You've already reviewed this book!")
-                  else pool.query(`INSERT INTO reviews (user_id, book_id, rating, comment) VALUES (${user[2]}, ${req.params.book_id}, ${user[3]}, '${user[4]}')`, (q_err, q_res) => res.send(q_res));
+                  else pool.query(`INSERT INTO reviews (user_id, book_id, rating, comment) VALUES (${user[2]}, ${req.params.book_id}, ${user[3]}, '${user[4]}')`, 
+                                  (q_err, q_res) => {
+                                    // res.send(q_res);
+                                    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+                                  });
                 });
 
   // if (!userComment) res.status(202).send("Comment section cannot be empty!");
@@ -117,7 +121,8 @@ detailsRouter.put('/:book_id/:user_id/:review_id/', async (req, res, next) => {
       [comment, review_id, user_id, ratingOption]
     );
   // this works: UPDATE reviews SET comment = 'I like butterflies' WHERE review_id = 33 AND user_id = 155;
-    res.json("comment was updated!")
+    // res.json("comment was updated!")
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   } catch (error) {
     console.error(error);
   }
@@ -133,7 +138,8 @@ detailsRouter.delete('/:book_id/:user_id', async (req, res, next) => {
     const { book_id, user_id } = req.params;
     console.log(book_id, user_id)
     const deleteComment = await pool.query(`DELETE FROM reviews WHERE book_id = '${book_id}' AND user_id = '${user_id}'`)
-    res.json("Comment was deleted!")
+    // res.json("Comment was deleted!")
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   } 
   catch (error) {
     console.error(error);
