@@ -11,53 +11,80 @@ const apiKey = process.env.GOODREADS_APIKEY;
 /* DETAILS Page */
 
 detailsRouter.get('/:book_id', (req, res, next) => {
-  res.sendFile(__dirname, "../client/build/index.html");
-  // console.log(res);
-  // next();
+  res.sendFile(__dirname, "../client/build/index.html", async function(){
+
+    if (/\D/gi.test(req.params.book_id)) return res.status(202).send("BookID must be an integer only!")
+    
+    // login is required
+    // set result variable as: result = db.execute("SELECT * FROM books WHERE book_id = :book_id", {"book_id": book_id}).fetchone()
+    const book = await pool.query(`SELECT * FROM books WHERE book_id = '${req.params.book_id}'`)
+    // console.log(book.rows)
+
+    if (book.rows.length > 0) {
+      const resultISBN = book.rows[0].isbn;
+      const comment_list = await pool.query(`SELECT u.userID, u.firstname, u.lastname, u.email, r.rating, r.comment, r.book_id, r.review_id
+                                              FROM reviews r 
+                                              JOIN users u 
+                                              ON u.userID = r.user_id 
+                                              WHERE book_id = '${req.params.book_id}'`);
+      // console.log(comment_list.rows);
+    
+      // Sample: https://www.goodreads.com/book/review_counts.json?isbns=1416949658&key=YOUR_KEY
+    
+      fetch(`https://www.goodreads.com/book/review_counts.json?isbns=${resultISBN}&key=${apiKey}`)
+        .then(response => response.json())
+        .then(result => res.status(200).send({result: result, comment_list: comment_list.rows, bookInfo: book.rows[0]}))
+        .catch(err => res.send(err))
+    } else {
+      res.status(202).send("Book not found!")
+    }
+    });
+    // console.log(res);
+    // next();
 })
 
-detailsRouter.get('/:book_id', async (req, res, next) => {
+// detailsRouter.get('/:book_id', async (req, res, next) => {
   
-  // BookID param must be integer:
-  // console.log(!/\D/gi.test(req.params.book_id))
-  if (/\D/gi.test(req.params.book_id)) return res.status(202).send("BookID must be an integer only!")
+//   // BookID param must be integer:
+//   // console.log(!/\D/gi.test(req.params.book_id))
+//   if (/\D/gi.test(req.params.book_id)) return res.status(202).send("BookID must be an integer only!")
   
-  // login is required
-  // set result variable as: result = db.execute("SELECT * FROM books WHERE book_id = :book_id", {"book_id": book_id}).fetchone()
-  const book = await pool.query(`SELECT * FROM books WHERE book_id = '${req.params.book_id}'`)
-  // console.log(book.rows)
+//   // login is required
+//   // set result variable as: result = db.execute("SELECT * FROM books WHERE book_id = :book_id", {"book_id": book_id}).fetchone()
+//   const book = await pool.query(`SELECT * FROM books WHERE book_id = '${req.params.book_id}'`)
+//   // console.log(book.rows)
 
-  if (book.rows.length > 0) {
-    const resultISBN = book.rows[0].isbn;
-    const comment_list = await pool.query(`SELECT u.userID, u.firstname, u.lastname, u.email, r.rating, r.comment, r.book_id, r.review_id
-                                            FROM reviews r 
-                                            JOIN users u 
-                                            ON u.userID = r.user_id 
-                                            WHERE book_id = '${req.params.book_id}'`);
-    // console.log(comment_list.rows);
+//   if (book.rows.length > 0) {
+//     const resultISBN = book.rows[0].isbn;
+//     const comment_list = await pool.query(`SELECT u.userID, u.firstname, u.lastname, u.email, r.rating, r.comment, r.book_id, r.review_id
+//                                             FROM reviews r 
+//                                             JOIN users u 
+//                                             ON u.userID = r.user_id 
+//                                             WHERE book_id = '${req.params.book_id}'`);
+//     // console.log(comment_list.rows);
   
-    // Sample: https://www.goodreads.com/book/review_counts.json?isbns=1416949658&key=YOUR_KEY
+//     // Sample: https://www.goodreads.com/book/review_counts.json?isbns=1416949658&key=YOUR_KEY
   
-    fetch(`https://www.goodreads.com/book/review_counts.json?isbns=${resultISBN}&key=${apiKey}`)
-      .then(response => response.json())
-      .then(result => res.status(200).send({result: result, comment_list: comment_list.rows, bookInfo: book.rows[0]}))
-      .catch(err => res.send(err))
-  } else {
-    res.status(202).send("Book not found!")
-  }
+//     fetch(`https://www.goodreads.com/book/review_counts.json?isbns=${resultISBN}&key=${apiKey}`)
+//       .then(response => response.json())
+//       .then(result => res.status(200).send({result: result, comment_list: comment_list.rows, bookInfo: book.rows[0]}))
+//       .catch(err => res.send(err))
+//   } else {
+//     res.status(202).send("Book not found!")
+//   }
 
-  // Get API data from GoodReads and link to GoodReads page
-  // try( set goodreads variable: goodreads = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": key, "isbns": result.isbn}))
-  // catch( any error )
+//   // Get API data from GoodReads and link to GoodReads page
+//   // try( set goodreads variable: goodreads = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": key, "isbns": result.isbn}))
+//   // catch( any error )
 
   
-  // Get stored comments from my database particular to one book:
-  // const comment_list = db.execute("SELECT u.firstname, u.lastname, u.email, r.rating, r.comment from reviews r JOIN users u ON u.userid=r.user_id WHERE book_id = :id", {"id": book_id}).fetchall()
+//   // Get stored comments from my database particular to one book:
+//   // const comment_list = db.execute("SELECT u.firstname, u.lastname, u.email, r.rating, r.comment from reviews r JOIN users u ON u.userid=r.user_id WHERE book_id = :id", {"id": book_id}).fetchall()
 
-  // if there is not that result variable: error "Invalid book ID"
+//   // if there is not that result variable: error "Invalid book ID"
 
-  // return the unique book's details page: render_template("details.html", result=result, comment_list=comment_list , book_id=book_id, goodreads=goodreads.json()["books"][0]) # --- removing this worked..? 
-});
+//   // return the unique book's details page: render_template("details.html", result=result, comment_list=comment_list , book_id=book_id, goodreads=goodreads.json()["books"][0]) # --- removing this worked..? 
+// });
 
 
 
