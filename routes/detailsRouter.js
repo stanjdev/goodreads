@@ -40,9 +40,8 @@ detailsRouter.get('/:book_id', async (req, res, next) => {
     res.status(202).send("Book not found!")
   }
   
-
+  
   // res.sendFile(__dirname, "../client/build/index.html");
-
 
 
   // Get API data from GoodReads and link to GoodReads page
