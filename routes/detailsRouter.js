@@ -10,8 +10,14 @@ const apiKey = process.env.GOODREADS_APIKEY;
 
 /* DETAILS Page */
 
-detailsRouter.get('/:book_id', async (req, res, next) => {
+detailsRouter.get('/:book_id', (req, res, next) => {
+  res.sendFile(__dirname, "../client/build/index.html");
+  // console.log(res);
+  // next();
+})
 
+detailsRouter.get('/:book_id', async (req, res, next) => {
+  
   // BookID param must be integer:
   // console.log(!/\D/gi.test(req.params.book_id))
   if (/\D/gi.test(req.params.book_id)) return res.status(202).send("BookID must be an integer only!")
@@ -39,10 +45,6 @@ detailsRouter.get('/:book_id', async (req, res, next) => {
   } else {
     res.status(202).send("Book not found!")
   }
-  
-  
-  // res.sendFile(__dirname, "../client/build/index.html");
-
 
   // Get API data from GoodReads and link to GoodReads page
   // try( set goodreads variable: goodreads = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": key, "isbns": result.isbn}))
@@ -56,6 +58,7 @@ detailsRouter.get('/:book_id', async (req, res, next) => {
 
   // return the unique book's details page: render_template("details.html", result=result, comment_list=comment_list , book_id=book_id, goodreads=goodreads.json()["books"][0]) # --- removing this worked..? 
 });
+
 
 
 // POST
@@ -83,7 +86,7 @@ detailsRouter.post('/:book_id', (req, res, next) => {
                   else pool.query(`INSERT INTO reviews (user_id, book_id, rating, comment) VALUES (${user[2]}, ${req.params.book_id}, ${user[3]}, '${user[4]}')`, 
                                   (q_err, q_res) => {
                                     // res.send(q_res);
-                                    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+                                    res.sendFile(__dirname, "../client/build/index.html");
                                   });
                 });
 
@@ -122,7 +125,7 @@ detailsRouter.put('/:book_id/:user_id/:review_id/', async (req, res, next) => {
     );
   // this works: UPDATE reviews SET comment = 'I like butterflies' WHERE review_id = 33 AND user_id = 155;
     // res.json("comment was updated!")
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.sendFile(__dirname, "../client/build/index.html");
   } catch (error) {
     console.error(error);
   }
@@ -139,7 +142,7 @@ detailsRouter.delete('/:book_id/:user_id', async (req, res, next) => {
     console.log(book_id, user_id)
     const deleteComment = await pool.query(`DELETE FROM reviews WHERE book_id = '${book_id}' AND user_id = '${user_id}'`)
     // res.json("Comment was deleted!")
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.sendFile(__dirname, "../client/build/index.html");
   } 
   catch (error) {
     console.error(error);
