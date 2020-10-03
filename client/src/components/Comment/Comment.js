@@ -16,7 +16,8 @@ function Comment({ comment }) {
           const deleteComment = await fetch(`/details/${comment.book_id}/${userid}`, {
             method: "DELETE"
           });
-          history.go(0);
+          
+          // history.go(0);
           // window.location = `/details/${comment.book_id}`;
         }
       } else {

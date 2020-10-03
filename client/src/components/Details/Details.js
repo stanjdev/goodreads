@@ -97,7 +97,7 @@ export default function Details() {
         // on success, render the new comment, rating, and user's first name onto the page.
         else {
           console.log(response)
-          history.go(0);
+          // history.go(0);
           // window.location = `/details/${book_id}`;
         }
       })
