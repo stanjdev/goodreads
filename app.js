@@ -41,14 +41,32 @@ app.use(cors())
 // });
 
 
+
+
+
+
 if (process.env.NODE_ENV === "production") {
   // serve static content(from when you run `npm run build`. aim for the index.html in your 'build' folder)
-  app.use(express.static(__dirname, "client/build"));
+  app.use(express.static(path.join(__dirname, "client/build")));
   // app.use("/", express.static("./client/build"))
 
   // app.get("*", (req,res) => {
   //   res.sendFile(path.join(__dirname, "client/build/index.html"));
   // })
+
+  // Attempt: https://www.reddit.com/r/reactjs/comments/apk207/react_router_urls_not_working_in_heroku/ 
+  app.get('/search', (req, res, next) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  })
+  app.get('/login', (req, res, next) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  })
+  app.get('/register', (req, res, next) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  })
+  app.get('/details', (req, res, next) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  })
 }
 
 const router = require("./routes/router");

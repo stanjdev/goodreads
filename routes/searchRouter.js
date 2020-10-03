@@ -5,6 +5,10 @@ const pool = require('../db');
 
 /* SEARCH Router */
 
+searchRouter.get('/' , (req, res, next) => {
+  // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+})
+
 searchRouter.post('/', (req, res, next) => {
   let keywords = req.body.query;
   console.log(keywords, "from front end!");

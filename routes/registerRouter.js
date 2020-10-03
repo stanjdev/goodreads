@@ -7,8 +7,9 @@ const pool = require('../db');
 
 registerRouter.get('/', (req, res) => {
   /* if GET request, show the registration form. return '/register' */
-  console.log('GET to register page!');
-  res.redirect(200, '/');
+  // console.log('GET to register page!');
+  // res.redirect(200, '/');
+  // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 })
 
 

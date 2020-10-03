@@ -9,6 +9,7 @@ loginRouter.get('/', (req, res) => {
   /* - ELSE, if it were a "GET" request, redirect/refresh user to login page again */
   // res.render('login', function(err, html) {res.send(html)});
   // res.redirect(200, '/login');
+  // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 })
 
 loginRouter.post('/', (req, res, next) => {

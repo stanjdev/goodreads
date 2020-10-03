@@ -40,6 +40,10 @@ detailsRouter.get('/:book_id', async (req, res, next) => {
   }
   
 
+  // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+
+
+
   // Get API data from GoodReads and link to GoodReads page
   // try( set goodreads variable: goodreads = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": key, "isbns": result.isbn}))
   // catch( any error )
