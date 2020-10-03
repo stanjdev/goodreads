@@ -2,6 +2,7 @@ const express = require('express');
 const detailsRouter = new express.Router();
 const pool = require('../db');
 const fetch = require('node-fetch');
+const path = require('path');
 
 require("dotenv").config();
 const apiKey = process.env.GOODREADS_APIKEY;
@@ -40,7 +41,7 @@ detailsRouter.get('/:book_id', async (req, res, next) => {
   }
   
 
-  // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  // res.sendFile(__dirname, "../client/build/index.html");
 
 
 

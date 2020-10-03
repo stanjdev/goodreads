@@ -1,8 +1,10 @@
 import React from 'react';
 import EditComment from '../EditComment/EditComment';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 
 function Comment({ comment }) {
+  const history = useHistory();
   const currentUserId = useSelector(state => state.sessionReducer.userid);
 
   const deleteComment = async userid => {
@@ -14,7 +16,8 @@ function Comment({ comment }) {
           const deleteComment = await fetch(`/details/${comment.book_id}/${userid}`, {
             method: "DELETE"
           });
-          window.location = `/details/${comment.book_id}`;
+          history.go(0);
+          // window.location = `/details/${comment.book_id}`;
         }
       } else {
         alert(`You can only delete your own comments! This comment by userID: ${userid}, yourID: ${currentUserId}`)

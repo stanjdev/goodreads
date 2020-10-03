@@ -1,7 +1,9 @@
 import React, { Fragment, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 
 const EditComment = ({commentInfo}) => {
+  const history = useHistory();
   const currentUserId = useSelector(state => state.sessionReducer.userid);
   const [ratingOption, setRatingOption] = useState(commentInfo.rating);
   const [comment, setComment] = useState(commentInfo.comment || "");
@@ -23,7 +25,8 @@ const EditComment = ({commentInfo}) => {
           body: JSON.stringify(body)
         })
         console.log(response);
-        window.location = `/details/${commentInfo.book_id}`;
+        history.go(0);
+        // window.location = `/details/${commentInfo.book_id}`;
       } else {
         alert("You can only edit your own comments!")
       }

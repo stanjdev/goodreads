@@ -6,8 +6,11 @@ import axios from 'axios';
 import "./Details.css";
 import Comment from '../Comment/Comment';
 
+import { useHistory } from 'react-router';
+
 
 export default function Details() {
+  const history = useHistory();
   const [ratingOption, setRatingOption] = useState(5);
   const [userComment, setUserComment] = useState("");
   const [goodreads, setGoodReads] = useState();
@@ -94,7 +97,8 @@ export default function Details() {
         // on success, render the new comment, rating, and user's first name onto the page.
         else {
           console.log(response)
-          window.location = `/details/${book_id}`;
+          history.go(0);
+          // window.location = `/details/${book_id}`;
         }
       })
       .catch(err => console.log(err))

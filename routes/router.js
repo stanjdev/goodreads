@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const pool = require('../db');
 const cors = require('cors');
+const path = require('path');
 
 router.use(cors())
 
@@ -28,9 +29,9 @@ router.use('/details', detailsRouter);
 
 // CATCH-ALL
 router.get("*", (req,res) => {
-  // res.sendFile(path.join(__dirname, "client/build/index.html"));
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
   // res.send("uh oh! catch all")
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   // res.render("uh oh! catch all")
   // res.redirect('/');
 })

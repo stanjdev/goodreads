@@ -64,9 +64,9 @@ if (process.env.NODE_ENV === "production") {
   app.get('/register', (req, res, next) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   })
-  app.get('/details/:book_id', (req, res, next) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-  })
+  // app.get('/details/:book_id', (req, res, next) => {
+  //   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  // })
   app.get('/details', (req, res, next) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   })
