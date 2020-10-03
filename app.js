@@ -65,14 +65,14 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   })
 
-  app.get('/details/:book_id', async (req, res, next) => {
+  app.get('/details/:book_id', (req, res, next) => {
   if (/\D/gi.test(req.params.book_id)) return res.status(202).send("BookID must be an integer only!")
   
-  const book = await pool.query(`SELECT * FROM books WHERE book_id = '${req.params.book_id}'`)
+  const book = pool.query(`SELECT * FROM books WHERE book_id = '${req.params.book_id}'`)
 
   if (book.rows.length > 0) {
     const resultISBN = book.rows[0].isbn;
-    const comment_list = await pool.query(`SELECT u.userID, u.firstname, u.lastname, u.email, r.rating, r.comment, r.book_id, r.review_id
+    const comment_list = pool.query(`SELECT u.userID, u.firstname, u.lastname, u.email, r.rating, r.comment, r.book_id, r.review_id
                                             FROM reviews r 
                                             JOIN users u 
                                             ON u.userID = r.user_id 
