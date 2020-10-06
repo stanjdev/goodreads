@@ -5,10 +5,10 @@ export default function Error() {
 
   return(
     <div>
-      <div class="alert alert-danger" role="alert">
-          <p class="mt-3">Page Not Found!</p>  
+      <div className="alert alert-danger" role="alert">
+          <p className="mt-3">Page Not Found!</p>  
       </div> 
-      <NavLink class="btn btn-primary" to="/" role="button">Go Back</NavLink>
+      <NavLink className="btn btn-primary" to="/" role="button">Go Back</NavLink>
     </div>
   )
 }

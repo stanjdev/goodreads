@@ -9,6 +9,9 @@ import Comment from '../Comment/Comment';
 import { useHistory } from 'react-router';
 
 
+const apiKey = process.env.REACT_APP_GOODREADS_APIKEY;
+console.log('APIKEY: ' + apiKey)
+
 export default function Details() {
   const history = useHistory();
   const [ratingOption, setRatingOption] = useState(5);
@@ -45,6 +48,7 @@ export default function Details() {
     // const abortController = new AbortController();
     // const signal = abortController.signal;
     isMounted.current = true;
+    console.log('useEffect Details component')
 
     if (isMounted.current && loggedIn) {
       fetchData(); // for GETTING comments and book data
@@ -57,7 +61,7 @@ export default function Details() {
     };
   }, []);
 
-
+// OG backend fetch for GoodReads + psql
   async function fetchData() {
     // const response = await fetch(`/details/${location.state.results.book_id}`);
     const response = await fetch(`/details/${book_id}`);
@@ -66,12 +70,21 @@ export default function Details() {
       alert("book not found!")
       window.location = "/search"
     }
-    const data = await response.json();
-    // console.log(data.bookInfo);
-    setGoodReads(data.result.books[0]);
-    setComments(data.comment_list);
-    setBookInfo(data.bookInfo)
+    console.log(response);
+    // const data = await response.json();
+    // console.log(data);
+    // // console.log(data.bookInfo);
+    // setGoodReads(data.result.books[0]);
+    // setComments(data.comment_list);
+    // setBookInfo(data.bookInfo)
   }
+
+  // async function fetchData() {
+  //   const response = await fetch(`https://cors-anywhere.herokuapp.com/https://www.goodreads.com/book/review_counts.json?isbns=${""}&key=${apiKey}`)
+  //   const data = await response.json();
+  //   console.log(data);
+  //   setGoodReads(data.books[0]);
+  // }
   
   // const fetchData = (signal) => {
   //   fetch(`/details/${location.state.results.book_id}`, {signal: signal})
