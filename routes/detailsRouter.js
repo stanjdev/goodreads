@@ -72,8 +72,8 @@ detailsRouter.get('/:book_id', async (req, res, next) => {
     const goodReads = await fetch(`https://www.goodreads.com/book/review_counts.json?isbns=${resultISBN}&key=${apiKey}`)
       .then(response => response.json())
       .then(result => {
-        options.headers = {...options.headers, 'result': JSON.stringify(result.books[0]), 'comment_list': JSON.stringify(comment_list.rows[0])}
-        console.log(options.headers)
+        options.headers = {...options.headers, 'result': JSON.stringify(result.books[0]), 'comment_list': comment_list.rows.length > 0 ? JSON.stringify(comment_list.rows) : ""}
+        // console.log(options.headers)
       })
       .catch(err => res.send(err))
   } else {
@@ -81,7 +81,6 @@ detailsRouter.get('/:book_id', async (req, res, next) => {
   }
 
   res.sendFile(path.join(__dirname, "../client/build/index.html"), options);
-  next();
 })
 
 // // ATTEMPT 2
@@ -223,7 +222,7 @@ detailsRouter.put('/:book_id/:user_id/:review_id/', async (req, res, next) => {
   try {
     const { comment, ratingOption } = req.body;
     const { book_id, user_id, review_id } = req.params;
-    console.log(book_id, user_id, review_id, comment, ratingOption);
+    // console.log(book_id, user_id, review_id, comment, ratingOption);
     const updateComment = await pool.query(
       "UPDATE reviews SET comment = $1, rating = $4 WHERE review_id = $2 AND user_id = $3", 
       [comment, review_id, user_id, ratingOption]
@@ -244,7 +243,7 @@ detailsRouter.put('/:book_id/:user_id/:review_id/', async (req, res, next) => {
 detailsRouter.delete('/:book_id/:user_id', async (req, res, next) => {
   try {
     const { book_id, user_id } = req.params;
-    console.log(book_id, user_id)
+    // console.log(book_id, user_id)
     const deleteComment = await pool.query(`DELETE FROM reviews WHERE book_id = '${book_id}' AND user_id = '${user_id}'`)
     // res.json("Comment was deleted!")
     res.sendFile(__dirname, "../client/build/index.html");

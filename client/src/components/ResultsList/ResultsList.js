@@ -9,7 +9,7 @@ export default function ResultsList() {
 
   const location = useLocation();
   // console.log(location.state.results[0].author)
-  console.log(location.state)
+  // console.log(location.state)
   const loggedIn = useSelector(state => state.sessionReducer.loggedIn);
 
 

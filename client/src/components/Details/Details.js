@@ -10,7 +10,6 @@ import { useHistory } from 'react-router';
 
 
 const apiKey = process.env.REACT_APP_GOODREADS_APIKEY;
-console.log('APIKEY: ' + apiKey)
 
 export default function Details() {
   const history = useHistory();
@@ -48,7 +47,6 @@ export default function Details() {
     // const abortController = new AbortController();
     // const signal = abortController.signal;
     isMounted.current = true;
-    console.log('useEffect Details component')
 
     if (isMounted.current && loggedIn) {
       fetchData(); // for GETTING comments and book data
@@ -61,6 +59,7 @@ export default function Details() {
     };
   }, []);
 
+
 // OG backend fetch for GoodReads + psql
   async function fetchData() {
     // const response = await fetch(`/details/${location.state.results.book_id}`);
@@ -72,14 +71,15 @@ export default function Details() {
     }
     // console.log(JSON.parse(response.headers.bookinfo));
     // console.log(JSON.parse(response.headers.result));
-    // console.log(JSON.parse(response.headers.comment_list));
+    // if (response.headers.comment_list) console.log(JSON.parse(response.headers.comment_list));
 
     // const data = await response.json();
     // console.log(data);
     // // console.log(data.bookInfo);
+    if (response.headers.comment_list) setComments(JSON.parse(response.headers.comment_list));
     setGoodReads(JSON.parse(response.headers.result));
-    setComments(JSON.parse(response.headers.comment_list));
-    setBookInfo(JSON.parse(response.headers.bookinfo))
+    setBookInfo(JSON.parse(response.headers.bookinfo));
+
   }
 
   // async function fetchData() {
@@ -97,6 +97,7 @@ export default function Details() {
   //       setComments(data.comment_list)
   //     })
   // }
+
 
   const addComment = async () => {
     const userData = {
@@ -170,7 +171,7 @@ export default function Details() {
                   </div>
                 </div>
 
-                <h3>Comments</h3>
+                <h3>Reviews</h3>
 
                 {comments.length > 0 ? comments.map((comment) => {
                     return (
