@@ -40,17 +40,44 @@ const { StaticRouter, match, RouterContext } = require('react-router');
 
 
 
-// PLAIN sendFile
-detailsRouter.get('/:book_id', (req, res, next) => {
+// PLAIN sendFile ATTEMPT 4
+detailsRouter.get('/:book_id', async (req, res, next) => {
 
+  if (/\D/gi.test(req.params.book_id)) return res.status(202).send("BookID must be an integer only!")
   
+  const book = await pool.query(`SELECT * FROM books WHERE book_id = '${req.params.book_id}'`)
+  // console.log(book.rows)
+
   let options = {
     headers: {
       'x-timestamp': Date.now(),
       'x-sent': true,
       'name': 'stanimal',
-      'origin':'my butt' 
+      'origin':'my butt',
+      'bookinfo': JSON.stringify(book.rows[0])
     }
+  }
+
+  if (book.rows.length > 0) {
+    const resultISBN = book.rows[0].isbn;
+    const comment_list = await pool.query(`SELECT u.userID, u.firstname, u.lastname, u.email, r.rating, r.comment, r.book_id, r.review_id
+                                            FROM reviews r 
+                                            JOIN users u 
+                                            ON u.userID = r.user_id 
+                                            WHERE book_id = '${req.params.book_id}'`);
+    // console.log(comment_list.rows);
+  
+    // Sample: https://www.goodreads.com/book/review_counts.json?isbns=1416949658&key=YOUR_KEY
+  
+    const goodReads = await fetch(`https://www.goodreads.com/book/review_counts.json?isbns=${resultISBN}&key=${apiKey}`)
+      .then(response => response.json())
+      .then(result => {
+        options.headers = {...options.headers, 'result': JSON.stringify(result.books[0]), 'comment_list': JSON.stringify(comment_list.rows[0])}
+        console.log(options.headers)
+      })
+      .catch(err => res.send(err))
+  } else {
+    res.status(202).send("Book not found!")
   }
 
   res.sendFile(path.join(__dirname, "../client/build/index.html"), options);

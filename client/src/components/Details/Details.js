@@ -70,13 +70,16 @@ export default function Details() {
       alert("book not found!")
       window.location = "/search"
     }
-    console.log(response);
+    // console.log(JSON.parse(response.headers.bookinfo));
+    // console.log(JSON.parse(response.headers.result));
+    // console.log(JSON.parse(response.headers.comment_list));
+
     // const data = await response.json();
     // console.log(data);
     // // console.log(data.bookInfo);
-    // setGoodReads(data.result.books[0]);
-    // setComments(data.comment_list);
-    // setBookInfo(data.bookInfo)
+    setGoodReads(JSON.parse(response.headers.result));
+    setComments(JSON.parse(response.headers.comment_list));
+    setBookInfo(JSON.parse(response.headers.bookinfo))
   }
 
   // async function fetchData() {
