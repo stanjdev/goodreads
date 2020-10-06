@@ -5,12 +5,12 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 
-require('ignore-styles')
+// require('ignore-styles')
 
-require('@babel/register')({
-  ignore: [/(node_modules)/],
-  presets: ['@babel/preset-env', '@babel/preset-react']
-})
+// require('@babel/register')({
+//   ignore: [/(node_modules)/],
+//   presets: ['@babel/preset-env', '@babel/preset-react']
+// })
 
 // require('./server')
 
@@ -78,7 +78,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   })
 
-
   // app.get('/details/:book_id', (req, res, next) => {
   //   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   // })
@@ -103,7 +102,6 @@ if (process.env.NODE_ENV === "production") {
   //     res.status(202).send("Book not found!")
   //   }
   // })
-
   
   app.get('/details', (req, res, next) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
