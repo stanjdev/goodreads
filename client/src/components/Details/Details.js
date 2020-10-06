@@ -67,7 +67,7 @@ export default function Details() {
       window.location = "/search"
     }
     const data = await response.json();
-    console.log(data.bookInfo);
+    // console.log(data.bookInfo);
     setGoodReads(data.result.books[0]);
     setComments(data.comment_list);
     setBookInfo(data.bookInfo)
@@ -96,8 +96,9 @@ export default function Details() {
         // base case that user already commented. handled in the backend with an alert to the frontend on status code 202 again? 
         // on success, render the new comment, rating, and user's first name onto the page.
         else {
+          // console.log("yo!")
           console.log(response)
-          // history.go(0);
+          history.go(0);
           // window.location = `/details/${book_id}`;
         }
       })

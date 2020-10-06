@@ -35,6 +35,7 @@ export default function sessionReducer(state = initialState, action) {
       }
     case LOGOUT:
       localStorage.clear();
+      sessionStorage.clear();
       return {
         loggedIn: false, 
         name: "", 

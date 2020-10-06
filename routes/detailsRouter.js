@@ -1,17 +1,48 @@
 const express = require('express');
 const detailsRouter = new express.Router();
 const pool = require('../db');
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
+const fetch = require('isomorphic-fetch');
 const path = require('path');
+
+import App from '../client/src/App';
+import Details from '../client/src/components/Details/Details';
 
 require("dotenv").config();
 const apiKey = process.env.GOODREADS_APIKEY;
 
 
+// ReactDOMServer, StaticRouter attempt
+const React = require('react');
+const ReactDOMServer = require('react-dom/server');
+const { StaticRouter, match, RouterContext } = require('react-router');
+
+
 /* DETAILS Page */
 
+
+// // ATTEMPT 3: ReactDOMServer, StaticRouter.
+// detailsRouter.get("/:book_id", (req, res, next) => {
+//   const context = {};
+
+//   const detailsPage = ReactDOMServer.renderToString(
+//     <StaticRouter location={req.url} context={context}>
+//       <Details />
+//     </StaticRouter>
+//   );
+
+//   res.write(`
+//     <!doctype html>
+//     <div id="">${detailsPage}</div>
+//   `);
+//   res.end();
+// })
+
+
+
+// ATTEMPT 2
 detailsRouter.get('/:book_id', (req, res, next) => {
-  res.sendFile(__dirname, "../client/build/index.html", async function(){
+  res.sendFile(__dirname, "../client/build/index.html", async function() {
 
     if (/\D/gi.test(req.params.book_id)) return res.status(202).send("BookID must be an integer only!")
     
@@ -38,11 +69,14 @@ detailsRouter.get('/:book_id', (req, res, next) => {
     } else {
       res.status(202).send("Book not found!")
     }
-    });
-    // console.log(res);
-    // next();
+  });
+  // console.log(res);
+  // next();
 })
 
+
+
+// ATTEMPT 1
 // detailsRouter.get('/:book_id', async (req, res, next) => {
   
 //   // BookID param must be integer:
@@ -112,8 +146,8 @@ detailsRouter.post('/:book_id', (req, res, next) => {
                   if (q_res && q_res.rows.length > 0) res.status(202).send("You've already reviewed this book!")
                   else pool.query(`INSERT INTO reviews (user_id, book_id, rating, comment) VALUES (${user[2]}, ${req.params.book_id}, ${user[3]}, '${user[4]}')`, 
                                   (q_err, q_res) => {
-                                    // res.send(q_res);
-                                    res.sendFile(__dirname, "../client/build/index.html");
+                                    res.send(q_res);
+                                    // res.sendFile(__dirname, "../client/build/index.html");
                                   });
                 });
 

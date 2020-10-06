@@ -5,7 +5,20 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 
+require('ignore-styles')
+
+require('@babel/register')({
+  ignore: [/(node_modules)/],
+  presets: ['@babel/preset-env', '@babel/preset-react']
+})
+
+// require('./server')
+
+
 // import { match, RouterContext } from 'react-router';
+// const React = require('react');
+// const ReactDOMServer = require('react-dom/server');
+// const { StaticRouter } = require('react-router');
 
 
 // create new express app and save it as "app"

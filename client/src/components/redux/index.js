@@ -4,18 +4,18 @@ import sessionReducer from './sessionReducer';
 
 
 // https://youtu.be/o_Ni4Cqh4XA
-function saveToLocalStorage(state) {
+function saveToSessionStorage(state) {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem('currentUser', serializedState)
+    sessionStorage.setItem('currentUser', serializedState)
   } catch (e) {
     console.log(e);
   }
 }
 
-function loadFromLocalStorage() {
+function loadFromSessionStorage() {
   try {
-    const serializedState = localStorage.getItem('currentUser')
+    const serializedState = sessionStorage.getItem('currentUser')
     if (serializedState === null) return undefined
     return JSON.parse(serializedState);
   } catch (e) {
@@ -28,7 +28,7 @@ const rootReducer = combineReducers({
   sessionReducer: sessionReducer
 });
 
-const persistedState = loadFromLocalStorage();
+const persistedState = loadFromSessionStorage();
 
 const myStore = createStore(
   rootReducer,
@@ -37,7 +37,7 @@ const myStore = createStore(
 
 myStore.subscribe(() => {
   // console.log(myStore.getState())
-  saveToLocalStorage(myStore.getState());
+  saveToSessionStorage(myStore.getState());
 });
 
 export default myStore;

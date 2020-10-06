@@ -82,7 +82,7 @@ onClick={() => dispatch(logoutAction())}
           {/* <Route exact path="/details/:book_id/:user_id" >
             <Details />
           </Route> */}
-          <Route exact path="/details/:book_id" >
+          <Route path="/details/:book_id" >
             <Details />
           </Route>
           <Route exact path="/results" >

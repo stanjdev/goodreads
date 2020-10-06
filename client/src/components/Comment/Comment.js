@@ -17,7 +17,7 @@ function Comment({ comment }) {
             method: "DELETE"
           });
           
-          // history.go(0);
+          history.go(0);
           // window.location = `/details/${comment.book_id}`;
         }
       } else {

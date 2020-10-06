@@ -26,7 +26,7 @@ const EditComment = ({commentInfo}) => {
         })
         console.log(response);
         
-        // history.go(0);
+        history.go(0);
         // window.location = `/details/${commentInfo.book_id}`;
       } else {
         alert("You can only edit your own comments!")
