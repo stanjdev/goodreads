@@ -42,6 +42,8 @@ const { StaticRouter, match, RouterContext } = require('react-router');
 
 // PLAIN sendFile
 detailsRouter.get('/:book_id', (req, res, next) => {
+
+  
   let options = {
     headers: {
       'x-timestamp': Date.now(),
@@ -52,6 +54,7 @@ detailsRouter.get('/:book_id', (req, res, next) => {
   }
 
   res.sendFile(path.join(__dirname, "../client/build/index.html"), options);
+  next();
 })
 
 // // ATTEMPT 2

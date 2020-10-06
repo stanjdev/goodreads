@@ -64,7 +64,7 @@ export default function Details() {
 // OG backend fetch for GoodReads + psql
   async function fetchData() {
     // const response = await fetch(`/details/${location.state.results.book_id}`);
-    const response = await fetch(`/details/${book_id}`);
+    const response = await axios.get(`/details/${book_id}`);
     if (response.status === 202) {
       console.log(response)
       alert("book not found!")
