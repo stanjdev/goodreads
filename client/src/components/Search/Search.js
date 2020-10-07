@@ -15,10 +15,9 @@ export default function Search() {
     const data = {
       query: e.target.q.value
     }
-    console.log(data.query)
     return await axios.post('/search', data)
       .then(response => {
-        console.log(response.data)
+        console.log("response data from Search! ", response.data)
         setSearchResults(response.data)
       })
       // .then(res => console.log("res received back!", res))

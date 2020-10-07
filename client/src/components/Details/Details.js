@@ -74,7 +74,7 @@ export default function Details() {
       alert(response.headers.error)
       window.location = "/search"
     }
-    console.log(response.headers.error);
+    // console.log(response.headers.error);
     // console.log(JSON.parse(response.headers.bookinfo));
     // console.log(JSON.parse(response.headers.result));
     // if (response.headers.comment_list) console.log(JSON.parse(response.headers.comment_list));
