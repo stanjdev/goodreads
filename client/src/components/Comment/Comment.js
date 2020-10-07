@@ -32,16 +32,19 @@ function Comment({ comment }) {
   return (
       <div className="card mb-3">
         <div className="card-body">
-          <h5 className="card-title">
-            <button onClick={() => deleteComment(comment.userid)} className="btn btn-sm btn-danger mr-1 float-right">Delete</button>
-            <EditComment commentInfo={comment} />
-            <span style={{position: "relative", left: "2.4em"}} className="align-self-center badge badge-info">{comment.firstname} <h6 className="card-subtitle mt-1 text-muted"><span className="badge badge-info">{comment.email}</span></h6></span>
-            {comment.rating === 5 ? <span className="badge badge-success float-left">{comment.rating}/5</span>
-          : comment.rating === 4 || comment.rating === 3 ? <span className="badge badge-warning float-left">{comment.rating}/5</span>
-          : <span className="badge badge-danger float-left">{comment.rating}/5</span>}
+          <h5 className="card-title d-flex justify-content-between">
+            <span className="badge badge-info">{comment.firstname} {comment.lastname[0]}<h6 className="card-subtitle mt-1 text-muted"><span className="badge badge-info">{comment.email}</span></h6></span>
+            <div>
+              <EditComment commentInfo={comment} />
+              <button onClick={() => deleteComment(comment.userid)} className="btn btn-sm btn-danger ">Delete</button>
+            </div>
           </h5>
-          {/* <h6 className="card-subtitle mt-2 text-muted"><span className="badge badge-info">{comment.email}</span></h6> */}
-          <p className="card-text mt-3 alert alert-info">{comment.comment}</p>
+          <div className="alert alert-info mt-2">
+            {comment.rating === 5 ? <span className="badge badge-success float-left">rated: {comment.rating}/5</span>
+          : comment.rating === 4 || comment.rating === 3 ? <span className="badge badge-warning float-left">rated: {comment.rating}/5</span>
+          : <span className="badge badge-danger float-left">rated: {comment.rating}/5</span>}
+            <p className="card-text mt-3 alert ">{comment.comment}</p>
+          </div>
         </div>
       </div>
   )
