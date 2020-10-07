@@ -43,8 +43,8 @@ const { StaticRouter, match, RouterContext } = require('react-router');
 // PLAIN sendFile ATTEMPT 4
 detailsRouter.get('/:book_id', async (req, res, next) => {
 
-  if (/\D/gi.test(req.params.book_id)) return res.status(202).send()
-  
+  if (/\D/gi.test(req.params.book_id)) return res.sendFile(path.join(__dirname, "../client/build/index.html"), {headers: {"error": "book_id must be integer!"}});
+
   const book = await pool.query(`SELECT * FROM books WHERE book_id = '${req.params.book_id}'`)
   // console.log(book.rows)
 
@@ -77,7 +77,7 @@ detailsRouter.get('/:book_id', async (req, res, next) => {
       })
       .catch(err => console.log(err))
   } else {
-    res.status(202).send("Book not found!")
+    return res.sendFile(path.join(__dirname, "../client/build/index.html"), {headers: {"error": "Book not found!"}});
   }
 
   res.sendFile(path.join(__dirname, "../client/build/index.html"), options);

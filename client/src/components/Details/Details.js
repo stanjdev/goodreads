@@ -46,10 +46,10 @@ export default function Details() {
   useEffect(() => {
     // const abortController = new AbortController();
     // const signal = abortController.signal;
-    if (/\D/gi.test(book_id)) {
-      alert("BookID must be an integer only!");
-      window.location = "/search";
-    }
+    // if (/\D/gi.test(book_id)) {
+    //   alert("BookID must be an integer only!");
+    //   window.location = "/search";
+    // }
     
     isMounted.current = true;
 
@@ -69,11 +69,12 @@ export default function Details() {
   async function fetchData() {
     // const response = await fetch(`/details/${location.state.results.book_id}`);
     const response = await axios.get(`/details/${book_id}`);
-    if (response.status === 202) {
-      console.log(response)
-      alert("book not found!")
+    if (response.headers.error) {
+      console.log(response.headers.error)
+      alert(response.headers.error)
       window.location = "/search"
     }
+    console.log(response.headers.error);
     // console.log(JSON.parse(response.headers.bookinfo));
     // console.log(JSON.parse(response.headers.result));
     // if (response.headers.comment_list) console.log(JSON.parse(response.headers.comment_list));
@@ -82,8 +83,8 @@ export default function Details() {
     // console.log(data);
     // // console.log(data.bookInfo);
     if (response.headers.comment_list) setComments(JSON.parse(response.headers.comment_list));
-    setGoodReads(JSON.parse(response.headers.result));
-    setBookInfo(JSON.parse(response.headers.bookinfo));
+    if (response.headers.result) setGoodReads(JSON.parse(response.headers.result));
+    if (response.headers.bookinfo) setBookInfo(JSON.parse(response.headers.bookinfo));
 
   }
 
