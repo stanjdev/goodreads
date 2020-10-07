@@ -43,7 +43,7 @@ const { StaticRouter, match, RouterContext } = require('react-router');
 // PLAIN sendFile ATTEMPT 4
 detailsRouter.get('/:book_id', async (req, res, next) => {
 
-  // if (/\D/gi.test(req.params.book_id)) return res.status(202).send("BookID must be an integer only!")
+  if (/\D/gi.test(req.params.book_id)) return res.status(202).send()
   
   const book = await pool.query(`SELECT * FROM books WHERE book_id = '${req.params.book_id}'`)
   // console.log(book.rows)
