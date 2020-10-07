@@ -9,7 +9,7 @@ export default function ResultsList() {
 
   const location = useLocation();
   // console.log(location.state.results[0].author)
-  console.log("ResultsList mounted! location.state: ", location.state.results)
+  console.log("ResultsList mounted! location.state: ", Object.values(location.state.results))
   const loggedIn = useSelector(state => state.sessionReducer.loggedIn);
 
 

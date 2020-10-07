@@ -20,7 +20,7 @@ searchRouter.post('/', (req, res, next) => {
                 LOWER(author) LIKE '%${keywords}%'`;
   pool.query(sql, (q_err, q_res) => {
     if (q_err) next(q_err);
-    console.log(q_res.rows);
+    console.log("search results from searchRouter: ", q_res.rows);
     return res.status(200).send(q_res.rows)
     // return res.writeHead(301, {Location: '/results' + q_res.rows})
    })
