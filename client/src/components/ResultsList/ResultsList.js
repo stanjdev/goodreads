@@ -32,12 +32,13 @@ export default function ResultsList() {
                 <tbody>
 
                   {
-                    location.state.results ? 
-                    (location.state.results.length < 1 ? 
-                    <tr style={{ color: "crimson", marginTop: "1em", fontWeight: 'bold', textTransform: "uppercase"}}><td>No results found!</td></tr> 
-                    : location.state.results.map(book => {
-                      return <Book book={book} key={book.isbn}/>
-                    }))
+                    location.state ? 
+                    (location.state.results.length > 0 ? 
+                      location.state.results.map(book => {
+                        return <Book book={book} key={book.isbn}/>
+                      })
+                    : <tr style={{ color: "crimson", marginTop: "1em", fontWeight: 'bold', textTransform: "uppercase"}}><td>No results found!</td></tr>
+                    )
                     : <Redirect to={{pathname: "/search"}}/>
                   }
 
