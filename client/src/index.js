@@ -13,7 +13,6 @@ import myStore from '../src/components/redux/index';
 </Provider>
 */
 
-
 ReactDOM.render(
 
     <BrowserRouter>

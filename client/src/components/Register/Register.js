@@ -31,7 +31,7 @@ export default function Register() {
   }
 
   // useEffect(() => {
-  //   console.log(success)  
+  //   console.log(success)
   // }, [success])
 
   return(

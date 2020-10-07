@@ -7,7 +7,6 @@ $desktop: "(min-width: 1200px)";
 
 @media #{$tablet}, #{$smartphone}{
     body {
-        // height: 100vh;
         text-align: center;
         background: 
             linear-gradient(to right, rgb(235, 235, 249), blanchedalmond),
@@ -49,10 +48,6 @@ $desktop: "(min-width: 1200px)";
     }
 }
 
-// .dropdown-menu {
-//     display: none;
-// }
-
 @media screen and (min-width: 1px) and (max-width: 550px){
     .bannerlogo {
         width: 88vw;
@@ -89,7 +84,6 @@ $desktop: "(min-width: 1200px)";
 
 
 
-
 * {
     box-sizing: border-box;
 }
@@ -118,13 +112,6 @@ html {
     }
 }
 
-
-.logout {
-    // position: absolute;
-    // top: 10px;
-    // right: 10px;
-    /* border: solid; */
-}
 
 .flashmessage {
     list-style: none;

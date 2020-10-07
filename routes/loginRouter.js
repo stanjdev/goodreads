@@ -45,28 +45,6 @@ loginRouter.post('/', (req, res, next) => {
       res.status(200).send({message: "login successful!", firstname: q_res.rows[0].firstname, email: q_res.rows[0].email, userid: q_res.rows[0].userid})
     }
   })
-
-  // if (loginInfo) {
-  //   // if (!pool.query(`SELECT * FROM user WHERE email = '${loginInfo.email}'`)) {
-  //   if (!pool.query(`SELECT 1 FROM users WHERE email=$1`, [loginInfo[0]], (res, err) => res)) {
-  //     console.log('Email does not exist!');
-  //   } 
-  //   // else if (!pool.query(`SELECT 1 FROM user WHERE password = '${loginInfo.password}'`)) {
-  //   //   console.log('Incorrect Password');
-  //   // } else if (pool.query(`SELECT 1 FROM user WHERE email = '${loginInfo.email}' AND password = '${loginInfo.password}'`)) {
-  //   //   console.log("You've successfully logged in!")
-  //   //   res.redirect('/search');
-  //   // }
-
-
-  //   /* - Query database for email and password entered */
-  //   /* - Remember which user was logged in via variables holding onto the queried email, queried firstname, queried password. Notification on the screen that says "you've successfully logged in!" */
-  //   /* - redirect you automatically to the search page */
-  //   /* - if the email OR the password don't exist in the DB, throw errors */
-  // } else {
-  //   console.log(loginInfo[0]);
-  //   // res.send("Must include BOTH email and password")
-  // }
 });
 
 /*

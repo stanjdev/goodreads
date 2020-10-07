@@ -14,7 +14,6 @@ const path = require('path');
 
 // require('./server')
 
-
 // import { match, RouterContext } from 'react-router';
 // const React = require('react');
 // const ReactDOMServer = require('react-dom/server');
@@ -56,8 +55,6 @@ app.use(cors())
 
 
 
-
-
 if (process.env.NODE_ENV === "production") {
   // serve static content(from when you run `npm run build`. aim for the index.html in your 'build' folder)
   app.use(express.static(path.join(__dirname, "client/build")));
@@ -80,27 +77,6 @@ if (process.env.NODE_ENV === "production") {
 
   // app.get('/details/:book_id', (req, res, next) => {
   //   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-  // })
-  // app.get('/details/:book_id', async (req, res, next) => {
-  //   if (/\D/gi.test(req.params.book_id)) return res.status(202).send("BookID must be an integer only!")
-
-  //   const book = await pool.query(`SELECT * FROM books WHERE book_id = '${req.params.book_id}'`)
-
-  //   if (book.rows.length > 0) {
-  //     const resultISBN = book.rows[0].isbn;
-  //     const comment_list = await pool.query(`SELECT u.userID, u.firstname, u.lastname, u.email, r.rating, r.comment, r.book_id, r.review_id
-  //                                             FROM reviews r 
-  //                                             JOIN users u 
-  //                                             ON u.userID = r.user_id 
-  //                                             WHERE book_id = '${req.params.book_id}'`);
-    
-  //     fetch(`https://www.goodreads.com/book/review_counts.json?isbns=${resultISBN}&key=${apiKey}`)
-  //       .then(response => response.json())
-  //       .then(result => res.status(200).send({result: result, comment_list: comment_list.rows, bookInfo: book.rows[0]}))
-  //       .catch(err => res.send(err))
-  //   } else {
-  //     res.status(202).send("Book not found!")
-  //   }
   // })
   
   app.get('/details', (req, res, next) => {

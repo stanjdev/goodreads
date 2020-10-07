@@ -1,5 +1,5 @@
 const fs = require('fs');
-const pool = require('./db');
+const pool = require('../db');
 const fastcsv = require('fast-csv');
 
 let stream = fs.createReadStream('books.csv')

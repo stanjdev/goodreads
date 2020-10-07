@@ -5,12 +5,8 @@ const pool = require('../db');
 const fetch = require('isomorphic-fetch');
 const path = require('path');
 
-// import App from '../client/src/App';
-// import Details from '../client/src/components/Details/Details';
-
 require("dotenv").config();
 const apiKey = process.env.GOODREADS_APIKEY;
-
 
 // ReactDOMServer, StaticRouter attempt
 const React = require('react');
@@ -19,26 +15,6 @@ const { StaticRouter, match, RouterContext } = require('react-router');
 
 
 /* DETAILS Page */
-
-
-// // ATTEMPT 3: ReactDOMServer, StaticRouter.
-// detailsRouter.get("/:book_id", (req, res, next) => {
-//   const context = {};
-
-//   const detailsPage = ReactDOMServer.renderToString(
-//     <StaticRouter location={req.url} context={context}>
-//       <Details />
-//     </StaticRouter>
-//   );
-
-//   res.write(`
-//     <!doctype html>
-//     <div id="">${detailsPage}</div>
-//   `);
-//   res.end();
-// })
-
-
 
 // PLAIN sendFile ATTEMPT 4
 detailsRouter.get('/:book_id', async (req, res, next) => {
@@ -83,6 +59,25 @@ detailsRouter.get('/:book_id', async (req, res, next) => {
   res.sendFile(path.join(__dirname, "../client/build/index.html"), options);
 })
 
+
+// // ATTEMPT 3: ReactDOMServer, StaticRouter.
+// detailsRouter.get("/:book_id", (req, res, next) => {
+//   const context = {};
+
+//   const detailsPage = ReactDOMServer.renderToString(
+//     <StaticRouter location={req.url} context={context}>
+//       <Details />
+//     </StaticRouter>
+//   );
+
+//   res.write(`
+//     <!doctype html>
+//     <div id="">${detailsPage}</div>
+//   `);
+//   res.end();
+// })
+
+
 // // ATTEMPT 2
 // detailsRouter.get('/:book_id', (req, res, next) => {
 //   res.sendFile(__dirname, "../client/build/index.html", async function() {
@@ -116,7 +111,6 @@ detailsRouter.get('/:book_id', async (req, res, next) => {
 //   // console.log(res);
 //   // next();
 // })
-
 
 
 // // ATTEMPT 1
@@ -167,9 +161,6 @@ detailsRouter.get('/:book_id', async (req, res, next) => {
 
 // POST
 detailsRouter.post('/:book_id', (req, res, next) => {
-  // login is required
-  // When user is about to post a comment. Check if user commented on this particular book before:
-
   const user = [
     req.body.name,
     req.body.email,
@@ -193,27 +184,7 @@ detailsRouter.post('/:book_id', (req, res, next) => {
                                     // res.sendFile(__dirname, "../client/build/index.html");
                                   });
                 });
-
-  // if (!userComment) res.status(202).send("Comment section cannot be empty!");
-  /* 
-  user_reviewed_before = db.execute("SELECT * from reviews WHERE user_id = :user_id AND book_id = :book_id",  {"user_id": session["user_id"], "book_id": book_id}).fetchone()
-  if user_reviewed_before:
-      return render_template("error.html", message = "You reviewed this book before!")
-  */
-  // proceed to user posting comment.
-  // encapsulate the user's comment and rating input values into variables userComment, userRating
-  // if not userComment, error "Comment section cannot be empty"
-
-  
-  /* 
-  try committing to DB, catch error if any
-  db.execute("INSERT INTO reviews (user_id, book_id, rating, comment) VALUES (:user_id, :book_id, :rating, :comment)",
-      {"user_id": session["user_id"], "book_id": book_id, "rating": user_rating, "comment": user_comment})
-  */
- 
- // success - db.commit(), "thanks for leaving a review!", redirect to that same details page. review should be updated now.
 });
-
 
 
 
@@ -237,8 +208,6 @@ detailsRouter.put('/:book_id/:user_id/:review_id/', async (req, res, next) => {
 
 
 
-
-
 // DELETE
 detailsRouter.delete('/:book_id/:user_id', async (req, res, next) => {
   try {
@@ -252,9 +221,6 @@ detailsRouter.delete('/:book_id/:user_id', async (req, res, next) => {
     console.error(error);
   }
 });
-
-
-
 
 
 

@@ -12,7 +12,6 @@ registerRouter.get('/', (req, res) => {
   // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 })
 
-
 // Validate and commit to database
 registerRouter.post('/', (req, res, next) => {
   let values = [
@@ -40,8 +39,7 @@ registerRouter.post('/', (req, res, next) => {
     }
   });
 
-
-  // Optional form validation, but 'required' on each input seems to get it done.
+  // Optional form validation, but 'required' on each HTML input seems to get it done.
   /* if email already registered, or pw validation:
   elif db.execute("SELECT * FROM users WHERE email LIKE :email", {"email": request.form.get("email")}).fetchone():
             return render_template("error.html", message="Email already registered.")
@@ -50,25 +48,7 @@ registerRouter.post('/', (req, res, next) => {
   elif request.form.get("password") != request.form.get("password_again"):
             return render_template("error.html", message="Passwords do not match.")
   */
- 
   
-              
-  // return await res.redirect('/login');
-  
-  // ELSE - assign those inputted values into variables first_name, last_name, email, password
-    // - try(to commit to database) and catch(the error page)
-    /* 
-      try:
-          db.execute("INSERT INTO users (firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password)",
-          {"firstname": first_name, "lastname": last_name, "email": email, "password": generate_password_hash(password) })
-      except Exception as e: 
-          return render_template("error.html", message=e)
-    */
-
-  // commit to db, flash "You successfully registered! Now you can log in." Redirect to login page. 
-
-  // return res.send(200, '/login');
-  // res.status(200).send("/login");
 })
 
 module.exports = registerRouter;

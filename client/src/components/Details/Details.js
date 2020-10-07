@@ -41,8 +41,6 @@ export default function Details() {
   const { book_id } = useParams();
   // console.log(book_id);
 
-  // console.log(location.state.results);
-
   useEffect(() => {
     // const abortController = new AbortController();
     // const signal = abortController.signal;
@@ -119,7 +117,6 @@ export default function Details() {
         // base case that user already commented. handled in the backend with an alert to the frontend on status code 202 again? 
         // on success, render the new comment, rating, and user's first name onto the page.
         else {
-          // console.log("yo!")
           console.log(response)
           history.go(0);
           // window.location = `/details/${book_id}`;

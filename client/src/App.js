@@ -19,7 +19,6 @@ const dispatch = useDispatch()
 onClick={() => dispatch(logoutAction())}
 */
 
-
   // const [errorExists, setErrorExists] = useState();
 
   // useEffect(() => {
@@ -33,9 +32,8 @@ onClick={() => dispatch(logoutAction())}
   // const [currentUser, setCurrentUser] = useState(
   //   localStorage.getItem('currentUserInLocalStorage') || 'barnabee'
   // );
-  // DON'T NEED THIS localStorage stuff if I'm deciding to use Express backend and SQL database to store loginInfo
-  // BUT localStorage for refreshes? 
 
+  // LocalStorage login system attempt
   // const login = () => {
   //   localStorage.setItem('currentUserInLocalStorage', currentUser);
   // }
@@ -60,7 +58,6 @@ onClick={() => dispatch(logoutAction())}
   // const renderError = () => {
   //   return errorExists ? <Error /> : null;
   // }
-
 
 
   return (
