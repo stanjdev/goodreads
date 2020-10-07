@@ -15,9 +15,9 @@ searchRouter.post('/', (req, res, next) => {
   // User must be logged in. Login Required
   // render the search page
   const sql = `SELECT * FROM books WHERE 
-                LOWER(isbn) LIKE '%${keywords}%' OR
-                LOWER(title) LIKE '%${keywords}%' OR
-                LOWER(author) LIKE '%${keywords}%'`;
+                LOWER(isbn) LIKE LOWER('%${keywords}%') OR
+                LOWER(title) LIKE LOWER('%${keywords}%') OR
+                LOWER(author) LIKE LOWER('%${keywords}%')`;
   pool.query(sql, (q_err, q_res) => {
     if (q_err) next(q_err);
     console.log("search results from searchRouter: ", q_res.rows);
