@@ -11,7 +11,7 @@ searchRouter.get('/' , (req, res, next) => {
 
 searchRouter.post('/', (req, res, next) => {
   let keywords = req.body.query;
-  console.log(keywords, "from front end!");
+  // console.log(keywords, "from front end!");
   // User must be logged in. Login Required
   // render the search page
   const sql = `SELECT * FROM books WHERE 
@@ -20,8 +20,8 @@ searchRouter.post('/', (req, res, next) => {
                 LOWER(author) LIKE '%${keywords}%'`;
   pool.query(sql, (q_err, q_res) => {
     if (q_err) next(q_err);
-    // console.log(q_res);
-    return res.status(200).json(q_res.rows)
+    console.log(q_res.rows);
+    return res.status(200).send(q_res.rows)
     // return res.writeHead(301, {Location: '/results' + q_res.rows})
    })
 })
