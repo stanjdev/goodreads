@@ -15,7 +15,7 @@ export default function Search() {
     const data = {
       query: e.target.q.value
     }
-    console.log(data.query)
+    // console.log(data.query)
     return await axios.post('/search', data)
       .then(response => {
         // console.log(response.data)

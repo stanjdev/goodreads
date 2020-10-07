@@ -9,7 +9,7 @@ export default function ResultsList() {
 
   const location = useLocation();
   // console.log(location.state.results[0].author)
-  // console.log(location.state)
+  console.log(location.state)
   const loggedIn = useSelector(state => state.sessionReducer.loggedIn);
 
 
@@ -32,7 +32,7 @@ export default function ResultsList() {
                 <tbody>
 
                   {
-                    location.state ? 
+                    location.state.results ? 
                     (location.state.results.length < 1 ? 
                     <tr style={{ color: "crimson", marginTop: "1em", fontWeight: 'bold', textTransform: "uppercase"}}><td>No results found!</td></tr> 
                     : location.state.results.map(book => {

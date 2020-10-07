@@ -46,6 +46,11 @@ export default function Details() {
   useEffect(() => {
     // const abortController = new AbortController();
     // const signal = abortController.signal;
+    if (/\D/gi.test(book_id)) {
+      alert("BookID must be an integer only!");
+      window.location = "/search";
+    }
+    
     isMounted.current = true;
 
     if (isMounted.current && loggedIn) {
