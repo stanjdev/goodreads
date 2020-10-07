@@ -45,6 +45,7 @@ const NavBar = () => {
       <Navbar id="Navbar" collapseOnSelect expand="lg" bg="dark" variant="dark" >
         <NavLink id="brand" to="/" className="animateMe navbar-brand animate__animated animate__lightSpeedInRight" style={{display: 'flex', justifyContent: "center", alignItems: 'center'}}><img src={icon} alt="books icon" style={{height: 26, marginRight: 7}}/> GoodReads Reviews</NavLink>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        {/* <Navbar.Toggle aria-controls="-navbar-nav"  className="order-md-1 order-0"/> */}
         <Navbar.Collapse id="responsive-navbar-nav">
 
           <Nav className="mr-auto">

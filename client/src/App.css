@@ -1,8 +1,10 @@
 @media (min-width: 768px), (max-width: 768px) {
   body {
     text-align: center;
-    background: -webkit-gradient(linear, left top, right top, from(#ebebf9), to(blanchedalmond)), url("../src/imgs/books-bg.jpg") no-repeat center fixed;
-    background: linear-gradient(to right, #ebebf9, blanchedalmond), url("../src/imgs/books-bg.jpg") no-repeat center fixed;
+    background: -webkit-gradient(linear, left top, right top, from(#ebebf9), to(blanchedalmond)), url("../src/imgs/books-bg.jpg") fixed;
+    background: linear-gradient(to right, #ebebf9, blanchedalmond), url("../src/imgs/books-bg.jpg") fixed;
+    background-position: center;
+    background-repeat: no-repeat;
     background-blend-mode: multiply;
     background-size: cover;
     -webkit-background-size: cover;
@@ -49,8 +51,10 @@
     width: 88vw;
   }
   body {
-    background: -webkit-gradient(linear, left top, right top, from(#ebebf9), to(blanchedalmond)), url("../src/imgs/books-bg.jpg") no-repeat center fixed;
-    background: linear-gradient(to right, #ebebf9, blanchedalmond), url("../src/imgs/books-bg.jpg") no-repeat center fixed;
+    background: -webkit-gradient(linear, left top, right top, from(#ebebf9), to(blanchedalmond)), url("../src/imgs/books-bg.jpg") fixed;
+    background: linear-gradient(to right, #ebebf9, blanchedalmond), url("../src/imgs/books-bg.jpg") fixed;
+    background-position: center;
+    background-repeat: no-repeat;
     background-blend-mode: multiply;
     background-size: cover;
     -webkit-background-size: cover;

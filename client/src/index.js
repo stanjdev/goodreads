@@ -15,13 +15,13 @@ import myStore from '../src/components/redux/index';
 
 
 ReactDOM.render(
-  <React.StrictMode>
+
     <BrowserRouter>
       <Provider store={myStore}>
         <App />
       </Provider>
     </BrowserRouter>
-  </React.StrictMode>,
+,
   document.getElementById('root')
 );
 
