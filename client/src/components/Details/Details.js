@@ -165,7 +165,7 @@ export default function Details() {
                   
                   <div className="col-md-4 d-flex align-items-center ratingsInfo">
                     <div className="list-group">
-                    <img src={Logo} alt="goodreads logo" className="img-fluid mb-3" style={{ width: 400 }}/>
+                    <img src={Logo} alt="goodreads logo" className="img-fluid mb-3 goodreads_logo" style={{ width: 400 }}/>
                       <button type="button" className="btn btn-secondary mb-3">
                         Average Rating: {goodreads ? <span className="badge badge-light">{ goodreads["average_rating"] }</span> : ""}
                       </button>
@@ -177,7 +177,7 @@ export default function Details() {
                   </div>
                 </div>
 
-                <h3>Reviews</h3>
+                <h3 className="reviews_title">Reviews</h3>
 
                 {comments.length > 0 ? comments.map((comment) => {
                     return (

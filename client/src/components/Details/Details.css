@@ -18,5 +18,11 @@
         -ms-flex-pack: center;
             justify-content: center;
   }
+  .goodreads_logo {
+    margin-top: -15%;
+  }
+  .reviews_title {
+    margin-top: 10%;
+  }
 }
 /*# sourceMappingURL=Details.css.map */
