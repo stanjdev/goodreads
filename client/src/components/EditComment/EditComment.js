@@ -39,7 +39,7 @@ const EditComment = ({commentInfo}) => {
   return (
     <Fragment>
       {/* <button onClick={() => editComment(userid)} className="btn btn-warning mr-2 float-right">Edit</button> */}
-      <button type="button" className="btn btn-warning mr-2 float-right" data-toggle="modal" data-target={`#review_id${commentInfo.review_id}`}>
+      <button type="button" className="btn btn-sm btn-warning mr-1 float-right" data-toggle="modal" data-target={`#review_id${commentInfo.review_id}`}>
           Edit
       </button>
 
