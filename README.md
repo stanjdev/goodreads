@@ -1,5 +1,5 @@
 <div className="header">
-        <h1>GoodReads</h1>
+        <h1>GoodReads Reviews</h1>
         <h2>Book Reviews Web App</h2>
         <blockquote><em>"Create an account, log in, search for, and leave reviews for your favorite books!"</em></blockquote>
         <p><a href="https://react-goodreads.herokuapp.com/" target="_blank" rel="noopener noreferrer">Live</a> | <a href="https://github.com/stanjdev/goodreads" target="_blank" rel="noopener noreferrer">GitHub</a></p>
