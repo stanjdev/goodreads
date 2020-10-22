@@ -9,6 +9,7 @@ import Comment from '../Comment/Comment';
 import { useHistory } from 'react-router';
 
 
+// eslint-disable-next-line no-unused-vars
 const apiKey = process.env.REACT_APP_GOODREADS_APIKEY;
 
 export default function Details() {
@@ -60,6 +61,7 @@ export default function Details() {
       // abortController.abort();
       isMounted.current = false;
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
@@ -111,6 +113,7 @@ export default function Details() {
       userRating: ratingOption,
       userComment: userComment
     }
+    // eslint-disable-next-line no-unused-vars
     const commentAdd = await axios.post(`/details/${book_id}`, userData)
       .then(response => {
         if (response.status === 202) alert(response.data)

@@ -19,14 +19,14 @@ loginRouter.post('/', (req, res, next) => {
     req.body.password
   ]
   // console.log(loginInfo);
-  pool.query(`SELECT * FROM users WHERE email='${loginInfo[0]}'`, (q_err, q_res) => {
+  pool.query(`SELECT * FROM users WHERE email=$1`, [loginInfo[0]],  (q_err, q_res) => {
     if (q_err) next(q_err);
     // console.log(q_res.rows[0]);
     if (q_res.rows.length < 1) {
       res.status(202).send("Email does not exist")
       return
     } else if (q_res.rows[0]){
-      pool.query(`SELECT * FROM users WHERE password='${loginInfo[1]}'`, (q_err, q_res) => {
+      pool.query(`SELECT * FROM users WHERE password=$1`, [loginInfo[1]], (q_err, q_res) => {
         if (q_err) next(q_err);
         if (q_res.rows.length < 1) {
           res.status(202).send("Incorrect password")
@@ -38,7 +38,7 @@ loginRouter.post('/', (req, res, next) => {
     }
   })
 
-  pool.query(`SELECT * FROM users WHERE email='${loginInfo[0]}' AND password='${loginInfo[1]}'`, (q_err, q_res) => {
+  pool.query(`SELECT * FROM users WHERE email=$1 AND password=$2`, [loginInfo[0], loginInfo[1]], (q_err, q_res) => {
     if (q_err) next(q_err);
     if (q_res.rows.length >= 1) {
       console.log("success!")

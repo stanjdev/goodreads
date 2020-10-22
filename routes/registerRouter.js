@@ -21,8 +21,9 @@ registerRouter.post('/', (req, res, next) => {
     req.body.password,
   ]
   
-  const sql = `SELECT * FROM users WHERE email = '${values[2]}'`
-  pool.query(sql, (q_err, q_res) => {
+  const sql = `SELECT * FROM users WHERE email = $1`
+  const value = [values[2]];
+  pool.query(sql, value, (q_err, q_res) => {
     if (q_err) next(q_err);
     console.log(q_res.rows);
     if (q_res.rows.length >= 1) {

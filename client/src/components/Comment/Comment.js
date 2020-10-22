@@ -13,6 +13,7 @@ function Comment({ comment }) {
     try {
       if (currentUserId === userid) {
         if (window.confirm('Are you sure you wish to delete this comment?')) {
+          // eslint-disable-next-line no-unused-vars
           const deleteComment = await fetch(`/details/${comment.book_id}/${userid}`, {
             method: "DELETE"
           });
