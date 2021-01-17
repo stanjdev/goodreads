@@ -5,20 +5,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 
-// require('ignore-styles')
-
-// require('@babel/register')({
-//   ignore: [/(node_modules)/],
-//   presets: ['@babel/preset-env', '@babel/preset-react']
-// })
-
-// require('./server')
-
-// import { match, RouterContext } from 'react-router';
-// const React = require('react');
-// const ReactDOMServer = require('react-dom/server');
-// const { StaticRouter } = require('react-router');
-
 
 // create new express app and save it as "app"
 const app = express();
@@ -35,22 +21,6 @@ app.use(bodyParser.json());
 
 // This will bypass CORS error when doing fetch request from a different client to this server.
 app.use(cors())
-
-
-// // react-router 'match' Attempt from https://stackoverflow.com/questions/35524117/express-status-404-with-react-router
-// app.use((req, res, next) => {
-//   match({ router, location: req.url }, (error, redirectLocation, renderProps) => {
-//     if (error) {
-//       res.status(500).send(error.message)
-//     } else if (redirectLocation) {
-//       res.redirect(302, redirectLocation.pathname + redirectLocation.search) 
-//     } else if (renderProps) {
-//       res.status(200).send("match works!")
-//     } else {
-//       res.status(404).send("Not Found")
-//     }
-//   })
-// });
 
 
 

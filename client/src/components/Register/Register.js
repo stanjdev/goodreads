@@ -30,9 +30,7 @@ export default function Register() {
       .catch(err => console.log(err))
   }
 
-  // useEffect(() => {
-  //   console.log(success)
-  // }, [success])
+
 
   return(
       <div className="container">
