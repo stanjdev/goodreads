@@ -5,12 +5,12 @@ const pool = require('../db');
 /* REGISTER Page */
 
 
-registerRouter.get('/', (req, res) => {
-  /* if GET request, show the registration form. return '/register' */
-  // console.log('GET to register page!');
-  // res.redirect(200, '/');
-  // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-})
+// registerRouter.get('/', (req, res) => {
+//   /* if GET request, show the registration form. return '/register' */
+//   // console.log('GET to register page!');
+//   // res.redirect(200, '/');
+//   // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// })
 
 // Validate and commit to database
 registerRouter.post('/', (req, res, next) => {
@@ -35,7 +35,7 @@ registerRouter.post('/', (req, res, next) => {
         (q_err, q_res) => {
           if (q_err) next(q_err); 
           console.log('Registration successful.')
-          res.status(200).send('Registration successful!') // But, it sends the info in the res... confidential password...
+          res.status(200).send('Registration successful!') // But, it sends the info in the res... confidential pw...
       })
     }
   });
@@ -49,7 +49,6 @@ registerRouter.post('/', (req, res, next) => {
   elif request.form.get("password") != request.form.get("password_again"):
             return render_template("error.html", message="Passwords do not match.")
   */
-  
-})
+});
 
 module.exports = registerRouter;

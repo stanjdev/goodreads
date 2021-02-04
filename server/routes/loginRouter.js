@@ -5,12 +5,12 @@ const pool = require('../db');
 
 /* LOGIN Page */
 
-loginRouter.get('/', (req, res) => {
-  /* - ELSE, if it were a "GET" request, redirect/refresh user to login page again */
-  // res.render('login', function(err, html) {res.send(html)});
-  // res.redirect(200, '/login');
-  // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-})
+// loginRouter.get('/', (req, res) => {
+//   /* - ELSE, if it were a "GET" request, redirect/refresh user to login page again */
+//   // res.render('login', function(err, html) {res.send(html)});
+//   // res.redirect(200, '/login');
+//   // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// })
 
 loginRouter.post('/', (req, res, next) => {
   /* Forget any Email session.clear() thing */
@@ -47,8 +47,9 @@ loginRouter.post('/', (req, res, next) => {
   })
 });
 
+
 /*
-The POST route for /:
+The POST route pseudo for /:
 - Forget any Email session.clear() thing
 
 - IF the method was a "POST", set variables for those input values for email and password
@@ -64,8 +65,6 @@ The POST route for /:
   - redirect you automatically to the search page
 
 - ELSE, if it were a "GET" request, redirect/refresh user to login page again
-
 */
-
 
 module.exports = loginRouter;

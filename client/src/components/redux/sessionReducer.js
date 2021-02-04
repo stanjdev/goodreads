@@ -17,6 +17,7 @@ export const logoutAction = () => {
   }
 }
 
+// Initial State
 const initialState = {
   loggedIn: false,
   name: "",
@@ -24,6 +25,7 @@ const initialState = {
   userid: ""
 }
 
+// Reducer
 export default function sessionReducer(state = initialState, action) {
   switch(action.type) {
     case LOGIN:

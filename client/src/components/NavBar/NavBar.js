@@ -10,7 +10,7 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 
 
-const NavBar = () => {
+export default function NavBar() {
 
   const loggedIn = useSelector(state => state.sessionReducer.loggedIn)
   const loggedInUser = useSelector(state => state.sessionReducer.name)
@@ -101,6 +101,4 @@ const NavBar = () => {
       </Navbar>
   )
 
-}
-
-export default NavBar;
+};

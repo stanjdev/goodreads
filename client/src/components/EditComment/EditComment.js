@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 
-const EditComment = ({commentInfo}) => {
+export default function EditComment({commentInfo}) {
   const history = useHistory();
   const currentUserId = useSelector(state => state.sessionReducer.userid);
   const [ratingOption, setRatingOption] = useState(commentInfo.rating);
@@ -74,6 +74,4 @@ const EditComment = ({commentInfo}) => {
       </div>
     </Fragment>
   )
-}
-
-export default EditComment;
+};

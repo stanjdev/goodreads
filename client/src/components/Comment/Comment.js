@@ -3,7 +3,7 @@ import EditComment from '../EditComment/EditComment';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 
-function Comment({ comment }) {
+export default function Comment({ comment }) {
   const history = useHistory();
   const currentUserId = useSelector(state => state.sessionReducer.userid);
 
@@ -50,5 +50,3 @@ function Comment({ comment }) {
       </div>
   )
 };
-
-export default Comment;

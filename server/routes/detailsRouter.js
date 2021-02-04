@@ -19,7 +19,7 @@ const { StaticRouter, match, RouterContext } = require('react-router');
 // PLAIN sendFile ATTEMPT 4
 detailsRouter.get('/:book_id', async (req, res, next) => {
 
-  if (/\D/gi.test(req.params.book_id)) return res.sendFile(path.join(__dirname, "../client/build/index.html"), {headers: {"error": "book_id must be integer!"}});
+  if (/\D/gi.test(req.params.book_id)) return res.sendFile(path.join(__dirname, "../../client/build/index.html"), {headers: {"error": "book_id must be integer!"}});
 
   const book = await pool.query(`SELECT * FROM books WHERE book_id = $1`, [req.params.book_id])
   // console.log(book.rows)
@@ -28,8 +28,8 @@ detailsRouter.get('/:book_id', async (req, res, next) => {
     headers: {
       'x-timestamp': Date.now(),
       'x-sent': true,
-      'name': 'stanimal',
-      'origin':'my butt',
+      'name': 'GoodReads Reviews',
+      'origin':'React GoodReads',
       'bookinfo': JSON.stringify(book.rows[0])
     }
   }
@@ -53,10 +53,10 @@ detailsRouter.get('/:book_id', async (req, res, next) => {
       })
       .catch(err => console.log(err))
   } else {
-    return res.sendFile(path.join(__dirname, "../client/build/index.html"), {headers: {"error": "Book not found!"}});
+    return res.sendFile(path.join(__dirname, "../../client/build/index.html"), {headers: {"error": "Book not found!"}});
   }
 
-  res.sendFile(path.join(__dirname, "../client/build/index.html"), options);
+  res.sendFile(path.join(__dirname, "../../client/build/index.html"), options);
 })
 
 
@@ -80,7 +80,7 @@ detailsRouter.get('/:book_id', async (req, res, next) => {
 
 // // ATTEMPT 2
 // detailsRouter.get('/:book_id', (req, res, next) => {
-//   res.sendFile(__dirname, "../client/build/index.html", async function() {
+//   res.sendFile(__dirname, "../../client/build/index.html", async function() {
 
 //     if (/\D/gi.test(req.params.book_id)) return res.status(202).send("BookID must be an integer only!")
     
@@ -173,17 +173,17 @@ detailsRouter.post('/:book_id', (req, res, next) => {
 
   // user_reviewed_before
   pool.query(`SELECT * FROM reviews 
-                WHERE user_id = $1
-                AND book_id = $2`, [user[2], req.params.book_id], (q_err, q_res) => {
-                  if (q_err) next(q_err);
-                  if (q_res) console.log(q_res.rows);
-                  if (q_res && q_res.rows.length > 0) res.status(202).send("You've already reviewed this book!")
-                  else pool.query(`INSERT INTO reviews (user_id, book_id, rating, comment) VALUES ($1, $2, $3, $4)`, [user[2], req.params.book_id, user[3], user[4]], 
-                                  (q_err, q_res) => {
-                                    res.send(q_res);
-                                    // res.sendFile(__dirname, "../client/build/index.html");
-                                  });
-                });
+              WHERE user_id = $1
+              AND book_id = $2`, [user[2], req.params.book_id], (q_err, q_res) => {
+                if (q_err) next(q_err);
+                if (q_res) console.log(q_res.rows);
+                if (q_res && q_res.rows.length > 0) res.status(202).send("You've already reviewed this book!")
+                else pool.query(`INSERT INTO reviews (user_id, book_id, rating, comment) VALUES ($1, $2, $3, $4)`, [user[2], req.params.book_id, user[3], user[4]], 
+                  (q_err, q_res) => {
+                    res.send(q_res);
+                    // res.sendFile(__dirname, "../../client/build/index.html");
+                  });
+              });
 });
 
 
@@ -198,9 +198,9 @@ detailsRouter.put('/:book_id/:user_id/:review_id/', async (req, res, next) => {
       "UPDATE reviews SET comment = $1, rating = $4 WHERE review_id = $2 AND user_id = $3", 
       [comment, review_id, user_id, ratingOption]
     );
-  // this works: UPDATE reviews SET comment = 'I like butterflies' WHERE review_id = 33 AND user_id = 155;
+  // this works: UPDATE reviews SET comment = 'I like this book' WHERE review_id = 33 AND user_id = 155;
     // res.json("comment was updated!")
-    res.sendFile(__dirname, "../client/build/index.html");
+    res.sendFile(__dirname, "../../client/build/index.html");
   } catch (error) {
     console.error(error);
   }
@@ -215,13 +215,12 @@ detailsRouter.delete('/:book_id/:user_id', async (req, res, next) => {
     // console.log(book_id, user_id)
     const deleteComment = await pool.query(`DELETE FROM reviews WHERE book_id = $1 AND user_id = $2`, [book_id, user_id])
     // res.json("Comment was deleted!")
-    res.sendFile(__dirname, "../client/build/index.html");
+    res.sendFile(__dirname, "../../client/build/index.html");
   } 
   catch (error) {
     console.error(error);
   }
 });
-
 
 
 module.exports = detailsRouter;

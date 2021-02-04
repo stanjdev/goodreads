@@ -11,7 +11,7 @@ import Search from './components/Search/Search';
 import Details from './components/Details/Details';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-function App() {
+export default function App() {
  
   return (
     <Router>
@@ -58,5 +58,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;

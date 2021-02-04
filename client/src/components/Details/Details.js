@@ -172,7 +172,7 @@ export default function Details() {
                       <button type="button" className="btn btn-secondary mb-3">
                         # of Ratings: {goodreads ? <span className="badge badge-light">{ goodreads["work_ratings_count"]}</span> : ""}
                       </button>
-                      {goodreads && bookInfo ? <button type="button" className="btn btn-secondary"><a style={{color: "white"}} href={`https://www.goodreads.com/book/isbn/${bookInfo.isbn}`} target="_blank" rel="noopener noreferrer"> GoodReads Page Link  </a></button> : ""}
+                      {goodreads && bookInfo ? <button type="button" className="btn btn-secondary"><a style={{color: "white"}} href={`https://www.goodreads.com/book/isbn/${bookInfo.isbn}`} target="_blank" rel="noopener noreferrer"> GoodReads Page Link </a></button> : ""}
                     </div>
                   </div>
                 </div>

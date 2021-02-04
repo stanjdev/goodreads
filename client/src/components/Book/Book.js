@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-function Book({ book }) {
+export default function Book({ book }) {
   return (
     <tr>
         <td className="isbnCol">{book.isbn}</td>
@@ -11,6 +11,4 @@ function Book({ book }) {
         <td><Link to={{ pathname: `/details/${book.book_id}`, state: {results: book} }}>Details</Link></td>
     </tr>
   )
-}
-
-export default Book;
+};
