@@ -75,3 +75,14 @@ https://docs.cs50.net/ocw/web/projects/1/project1.html
 https://github.com/stanjdev/goodreads/projects/1?add_cards_query=is%3Aopen
 
 My old Python one: https://good-reads-api-book-reviewer.herokuapp.com/ 
+
+
+
+# Spin Up Locally:
+`cd` into goodreads folder:
+- `npm start` to run the `nodemon server/app.js` command
+
+`cd` into client folder:
+- `npm start` to run the `react-scripts start` command
+
+
