@@ -26,3 +26,6 @@ yarn-error.log*
 # dotenv environment variables file
 /server/.env
 /client/.env
+/server/.env_server
+/client/.env_client
+node_modules

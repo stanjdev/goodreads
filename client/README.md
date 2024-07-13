@@ -69,7 +69,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 
 
-MORE STUFF:
+MORE Resources:
 https://docs.cs50.net/ocw/web/projects/1/project1.html
 
 https://github.com/stanjdev/goodreads/projects/1?add_cards_query=is%3Aopen

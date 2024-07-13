@@ -7,7 +7,11 @@ const path = require('path');
 require("dotenv").config();
 const apiKey = process.env.GOODREADS_APIKEY;
 
-router.use(cors())
+const corsOptions = {
+  origin: ["https://stanjeong.vercel.app/", 'http://localhost:3000', 'http://localhost:80']
+};
+
+router.use(cors(corsOptions));
 
 // Connected routers:
 // we're using the searchRouter middleware!
