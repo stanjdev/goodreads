@@ -18,7 +18,7 @@ export default function Login() {
     }
     // console.log(data);
 
-    const base = 'https://goodreads-reviews.onrender.com/'
+    const base = 'https://goodreads-reviews.onrender.com'
 
     return await axios.post(base + '/login', data)
       .then(response => {
