@@ -37,6 +37,12 @@ app.get('/example', (req, res) => {
   res.send('example thing from app.js file!')
 })
 
+app.get('/name', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  const data = {name: 'STAANNNN'};
+  res.send(data);
+});
+
 // if (process.env.NODE_ENV === "production") {
   // serve static content(from when you run `npm run build`. aim for the index.html in your 'build' folder)
   app.use(express.static(path.join(__dirname, "../client/build")));

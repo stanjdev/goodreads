@@ -1,7 +1,7 @@
 /* Created 5/18/20 */ 
 /* Recreated Users table 5/26/20 */
 
--- CREATE DATABASE goodreads_reviews; -- copy and paste this into psql terminal
+CREATE DATABASE goodreads_reviews; -- copy and paste this into psql terminal
 
 CREATE TABLE users (
     userID SERIAL PRIMARY KEY, 

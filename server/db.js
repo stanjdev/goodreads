@@ -16,7 +16,7 @@ const devConfig = {
   // password: process.env.DB_PASSWORD,
   // port: process.env.DB_PORT,
   user: "postgres",
-  host: "http://localhost:5000",
+  host: "https://goodreads-reviews.onrender.com",
   database: "goodreads-reviews-database.c5ioue8qqu6m.us-west-1.rds.amazonaws.com",
   password: ")Mz2zsC_S-K.73O0{N$A8?i$nY{g",
   port: 5432

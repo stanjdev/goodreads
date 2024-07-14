@@ -71,6 +71,22 @@ router.get("/api/:book_id", async (req, res, next) => {
 
 })
 
+router.get('/testusers', async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  let teammembers = []
+  console.log(await pool.query('SHOW TABLES;'))
+  // pool
+  //     .query('SHOW TABLES;')
+      // .then(query_res => {
+      //     for (let i = 0; i < query_res.rowCount; i++){
+      //         teammembers.push(query_res.rows[i]);
+      //     }
+      //     const data = {teammembers: teammembers};
+      //     console.log(teammembers);
+      //     res.send(data)
+      // });
+});
+
 // CATCH-ALL
 router.get("*", (req,res) => {
   res.sendFile(path.join(__dirname, "../../client/build/index.html"));
