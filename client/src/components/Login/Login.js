@@ -6,6 +6,7 @@ import { loginAction } from '../redux/sessionReducer';
 import { useSelector, useDispatch } from 'react-redux';
 
 const base_url = process.env.REACT_APP_API_URI
+const cors_anywhere = 'https://cors-anywhere.herokuapp.com/'
 
 export default function Login() {
   const location = useLocation();
@@ -20,7 +21,7 @@ export default function Login() {
     }
     // console.log(data);
 
-    return await axios.post(base_url + '/login', data)
+    return await axios.post(`${cors_anywhere}${base_url}/login`, data)
       .then(response => {
         if (response.status === 202) {
           alert(response.data)
