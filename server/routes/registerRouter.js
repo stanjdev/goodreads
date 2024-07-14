@@ -14,6 +14,7 @@ const pool = require('../db');
 
 // Validate and commit to database
 registerRouter.post('/', (req, res, next) => {
+  res.set('Access-Control-Allow-Origin', '*');
   let values = [
     req.body.firstName,
     req.body.lastName,
@@ -25,7 +26,7 @@ registerRouter.post('/', (req, res, next) => {
   const value = [values[2]];
   pool.query(sql, value, (q_err, q_res) => {
     if (q_err) next(q_err);
-    console.log(q_res.rows);
+    console.log(q_res);
     if (q_res.rows.length >= 1) {
       res.status(202).send("Email already registered!")
     } else {

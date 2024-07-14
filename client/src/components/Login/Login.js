@@ -18,7 +18,9 @@ export default function Login() {
     }
     // console.log(data);
 
-    return await axios.post('/login', data)
+    const base = 'https://goodreads-reviews.onrender.com/'
+
+    return await axios.post(base + '/login', data)
       .then(response => {
         if (response.status === 202) {
           alert(response.data)

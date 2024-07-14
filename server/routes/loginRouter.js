@@ -13,6 +13,7 @@ const pool = require('../db');
 // })
 
 loginRouter.post('/', (req, res, next) => {
+  res.set('Access-Control-Allow-Origin', '*');
   /* Forget any Email session.clear() thing */
   let loginInfo = [
     req.body.email,

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect, NavLink } from 'react-router-dom';
 
+const base_url = process.env.REACT_APP_API_URI
+
 export default function Register() {
   const [success, setSuccess] = useState(false);
 
@@ -19,7 +21,7 @@ export default function Register() {
       return;
     }
     
-    return await axios.post('/register', data)
+    return await axios.post('https://goodreads-reviews.onrender.com/' + '/register', data)
       .then(response => {
         if (response.status === 202) {
           alert(response.data)

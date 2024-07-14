@@ -32,7 +32,7 @@ router.use('/details', detailsRouter);
 
 /* My app's API that returns a JSON object of the book's info get('/api') route */
 router.get("/api/:book_id", async (req, res, next) => {
-  
+  res.set('Access-Control-Allow-Origin', '*');
   if (/\D/gi.test(req.params.book_id)) return res.sendFile(path.join(__dirname, "../../client/build/index.html"), {headers: {"error": "book_id must be integer!"}});
   const book = await pool.query(`SELECT * FROM books WHERE book_id = $1`, [req.params.book_id]);
 
@@ -71,24 +71,44 @@ router.get("/api/:book_id", async (req, res, next) => {
 
 })
 
-router.get('/testusers', async (req, res) => {
+router.get('/createtables', async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
-  let teammembers = []
-  console.log(await pool.query('SHOW TABLES;'))
-  // pool
-  //     .query('SHOW TABLES;')
-      // .then(query_res => {
-      //     for (let i = 0; i < query_res.rowCount; i++){
-      //         teammembers.push(query_res.rows[i]);
-      //     }
-      //     const data = {teammembers: teammembers};
-      //     console.log(teammembers);
-      //     res.send(data)
-      // });
+
+  // // RUN THIS ONCE! DONE
+//   await pool.query(`CREATE TABLE users (
+//     userID SERIAL PRIMARY KEY, 
+//     firstName VARCHAR NOT NULL, 
+//     lastName VARCHAR NOT NULL, 
+//     email VARCHAR UNIQUE NOT NULL, 
+//     password VARCHAR NOT NULL
+// );
+// `)
+// await pool.query(
+// `CREATE TABLE books (
+//   book_id SERIAL PRIMARY KEY,
+//   isbn VARCHAR UNIQUE NULL,
+//   title VARCHAR(255) NOT NULL,
+//   author VARCHAR(255) NOT NULL,
+//   year SMALLINT NOT NULL
+// );
+// `)
+
+// await pool.query(
+// `CREATE TABLE reviews (
+//     review_id SERIAL PRIMARY KEY,
+//     user_id INTEGER REFERENCES users,
+//     book_id INTEGER REFERENCES books,
+//     rating SMALLINT NOT NULL CONSTRAINT Invalid_Rating CHECK (rating <= 5 AND rating >= 1),
+//     comment VARCHAR
+// );`)
+
+console.log(await pool.query('SELECT table_schema, table_name FROM information_schema.tables'))
+
 });
 
 // CATCH-ALL
 router.get("*", (req,res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   res.sendFile(path.join(__dirname, "../../client/build/index.html"));
   // res.send("uh oh! catch all")
   // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
