@@ -40,6 +40,7 @@ loginRouter.post('/', (req, res, next) => {
 
   pool.query(`SELECT * FROM users WHERE email=$1 AND password=$2`, [loginInfo[0], loginInfo[1]], (q_err, q_res) => {
     if (q_err) next(q_err);
+    console.log(q_res)
     if (q_res?.rows.length >= 1) {
       console.log("success!")
       res.status(200).send({message: "login successful!", firstname: q_res.rows[0].firstname, email: q_res.rows[0].email, userid: q_res.rows[0].userid})

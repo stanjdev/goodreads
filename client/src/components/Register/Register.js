@@ -18,6 +18,7 @@ export default function Register() {
       alert("passwords don't match! (from Register.js React Client side)")
       return;
     }
+    
     return await axios.post('/register', data)
       .then(response => {
         if (response.status === 202) {

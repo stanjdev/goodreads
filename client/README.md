@@ -79,6 +79,8 @@ My old Python one: https://good-reads-api-book-reviewer.herokuapp.com/
 
 
 # Spin Up Locally:
+`npm i` everything. May have to do legacy deps
+
 `cd` into goodreads folder:
 - `npm start` to run the `nodemon server/app.js` command
 

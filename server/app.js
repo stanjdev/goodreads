@@ -12,6 +12,8 @@ const app = express();
 // server configuration
 const PORT = process.env.PORT || 5000;
 
+// AWS Lambda Function URL https://4iy5xxbqa7iirxjkshgzv6tiwy0pmmzf.lambda-url.us-west-1.on.aws/ 
+
 //process.env.PORT
 //process.env.NODE_ENV => production or undefined
 
@@ -19,13 +21,23 @@ const PORT = process.env.PORT || 5000;
 // anytime we hit any route, parse/convert any req.body to json so we can use the data.
 app.use(bodyParser.json());
 
+const corsOptions = {
+  origin: ["https://stanjeong.vercel.app/", "http://127.0.0.1:3000"]
+};
+
 // This will bypass CORS error when doing fetch request from a different client to this server.
-app.use(cors())
+app.use(cors(corsOptions))
 
 
+app.get('/', (req, res) => {
+  res.send('Hello World from app.js file!')
+})
 
+app.get('/example', (req, res) => {
+  res.send('example thing from app.js file!')
+})
 
-if (process.env.NODE_ENV === "production") {
+// if (process.env.NODE_ENV === "production") {
   // serve static content(from when you run `npm run build`. aim for the index.html in your 'build' folder)
   app.use(express.static(path.join(__dirname, "../client/build")));
   // app.use("/", express.static("./client/build"))
@@ -52,7 +64,7 @@ if (process.env.NODE_ENV === "production") {
   app.get('/details', (req, res, next) => {
     res.sendFile(path.join(__dirname, "../client", "build", "index.html"));
   })
-}
+// }
 
 const router = require("./routes/router");
 // we're using the router middleware!
