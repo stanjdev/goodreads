@@ -21,7 +21,7 @@ export default function Register() {
       return;
     }
     
-    return await axios.post('https://goodreads-reviews.onrender.com/' + '/register', data)
+    return await axios.post(base_url + '/register', data)
       .then(response => {
         if (response.status === 202) {
           alert(response.data)

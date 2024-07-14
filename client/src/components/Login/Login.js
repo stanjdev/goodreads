@@ -5,6 +5,8 @@ import { useLocation, Redirect, NavLink } from 'react-router-dom';
 import { loginAction } from '../redux/sessionReducer';
 import { useSelector, useDispatch } from 'react-redux';
 
+const base_url = process.env.REACT_APP_API_URI
+
 export default function Login() {
   const location = useLocation();
   const loggedIn = useSelector(state => state.sessionReducer.loggedIn);
@@ -18,9 +20,7 @@ export default function Login() {
     }
     // console.log(data);
 
-    const base = 'https://goodreads-reviews.onrender.com'
-
-    return await axios.post(base + '/login', data)
+    return await axios.post(base_url + '/login', data)
       .then(response => {
         if (response.status === 202) {
           alert(response.data)
