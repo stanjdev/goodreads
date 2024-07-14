@@ -10,16 +10,16 @@ require('dotenv').config();
 // }
 
 const devConfig = {
-  // user: process.env.DB_USER,
-  // host: process.env.DB_HOST,
-  // database: process.env.DB_DATABASE,
-  // password: process.env.DB_PASSWORD,
-  // port: process.env.DB_PORT,
-  user: "postgres",
-  host: "https://goodreads-reviews.onrender.com",
-  database: "goodreads-reviews-database.c5ioue8qqu6m.us-west-1.rds.amazonaws.com",
-  password: ")Mz2zsC_S-K.73O0{N$A8?i$nY{g",
-  port: 5432
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_DATABASE,
+  // user: "postgres",
+  // host: "goodreads-reviews-database.c5ioue8qqu6m.us-west-1.rds.amazonaws.com",
+  // database: "",
+  // password: ")Mz2zsC_S-K.73O0{N$A8?i$nY{g",
+  // port: 5432
 }
 
 /* 
