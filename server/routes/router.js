@@ -97,7 +97,6 @@ router.get("/api/:book_id", async (req, res, next) => {
 // );`)
 
 //   console.log(await pool.query('SELECT table_schema, table_name FROM information_schema.tables'))
-
 // });
 
 // CATCH-ALL
