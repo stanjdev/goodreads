@@ -2,16 +2,11 @@ const { Pool } = require('pg');
 require('dotenv').config();
 
 const devConfig = {
-  // user: process.env.DB_USER,
-  // password: process.env.DB_PASSWORD,
-  // host: process.env.DB_HOST,
-  // port: process.env.DB_PORT,
-  // database: process.env.DB_DATABASE,
-  user: "postgres_render_db_uj2b_user",
-  host: "dpg-cqa4ge5ds78s739m8obg-a.oregon-postgres.render.com",
-  database: "postgres_render_db_uj2b",
-  password: "N1X8BxHPOaY3YV3vJa8WTJWBieaYfMSr",
-  port: 5432,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_DATABASE,
   ssl: true,
 }
 

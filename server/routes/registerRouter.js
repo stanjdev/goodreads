@@ -14,7 +14,6 @@ const pool = require('../db');
 
 // Validate and commit to database
 registerRouter.post('/', (req, res, next) => {
-  res.set('Access-Control-Allow-Origin', '*');
   let values = [
     req.body.firstName,
     req.body.lastName,

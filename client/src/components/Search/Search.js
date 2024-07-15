@@ -17,7 +17,7 @@ export default function Search() {
     }
     return await axios.post('/search', data)
       .then(response => {
-        console.log("response data from Search.js: " + response.data)
+        console.log("response data from Search.js: " + response)
         setSearchResults(response.data)
       })
       // .then(res => console.log("res received back!", res))

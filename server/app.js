@@ -39,7 +39,6 @@ app.get('/example', (req, res) => {
 })
 
 app.get('/name', (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
   const data = {name: 'STAANNNN'};
   res.send(data);
 });

@@ -18,7 +18,7 @@ export default function HomePage() {
               <hr className="my-3"></hr>
               <p className="lead">Search for your favorite books by title, author, or ISBN.</p>
               <p>Log in to review and leave ratings!</p>
-              <p className="lead">Make sure to enable <a href="https://cors-anywhere.herokuapp.com/corsdemo" target='_blank'>cors-anywhere</a> first!</p>
+              <p className="lead"></p>
                 <NavLink className="animateMe btn btn-primary btn-lg" to="/login" role="button">Login</NavLink>
             </div>
         </div>

@@ -32,7 +32,6 @@ router.use('/details', detailsRouter);
 
 /* My app's API that returns a JSON object of the book's info get('/api') route */
 router.get("/api/:book_id", async (req, res, next) => {
-  res.set('Access-Control-Allow-Origin', '*');
   if (/\D/gi.test(req.params.book_id)) return res.sendFile(path.join(__dirname, "../../client/build/index.html"), {headers: {"error": "book_id must be integer!"}});
   const book = await pool.query(`SELECT * FROM books WHERE book_id = $1`, [req.params.book_id]);
 
@@ -72,7 +71,6 @@ router.get("/api/:book_id", async (req, res, next) => {
 })
 
 router.get('/createtables', async (req, res) => {
-  res.set('Access-Control-Allow-Origin', '*');
 
   // // RUN THIS ONCE! DONE
 //   await pool.query(`CREATE TABLE users (
@@ -108,7 +106,6 @@ router.get('/createtables', async (req, res) => {
 
 // CATCH-ALL
 router.get("*", (req,res) => {
-  res.set('Access-Control-Allow-Origin', '*');
   res.sendFile(path.join(__dirname, "../../client/build/index.html"));
   // res.send("uh oh! catch all")
   // res.sendFile(path.join(__dirname, "client", "build", "index.html"));
