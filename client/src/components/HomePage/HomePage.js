@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import GoodreadsIcon from './goodreadslogobanner.png'
 import "./HomePage.css";
-import GoodreadsIcon from './goodreads_logo_banner.png'
 
 export default function HomePage() {
 
@@ -10,7 +10,7 @@ export default function HomePage() {
       <div className="row">
         <div className="col col-7 my-5">
             <div className="container">
-              <img className="bannerlogo" src={GoodreadsIcon} width="80%" alt="GoodReads logo banner" />
+              <img src={GoodreadsIcon} className="bannerlogo" width="80%" alt="GoodReads logo banner" />
               
               <h4 id="title" className="display-4">Book Reviews</h4>
               
