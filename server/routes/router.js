@@ -66,7 +66,7 @@ router.get("/api/:book_id", async (req, res, next) => {
 
 })
 
-router.get('/createtables', async (req, res) => {
+// router.get('/createtables', async (req, res) => {
 
   // // RUN THIS ONCE! DONE
 //   await pool.query(`CREATE TABLE users (
@@ -96,12 +96,12 @@ router.get('/createtables', async (req, res) => {
 //     comment VARCHAR
 // );`)
 
-  console.log(await pool.query('SELECT table_schema, table_name FROM information_schema.tables'))
+//   console.log(await pool.query('SELECT table_schema, table_name FROM information_schema.tables'))
 
-});
+// });
 
 // CATCH-ALL
-router.get("*", (req,res) => {
+router.get("/*", (req,res) => {
   res.sendFile(path.join(__dirname, "../../client/build/index.html"));
   // res.send("uh oh! catch all")
   // res.sendFile(path.join(__dirname, "client", "build", "index.html"));

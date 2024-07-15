@@ -28,18 +28,18 @@ app.use(bodyParser.json());
 app.use(cors())
 
 
-app.get('/', (req, res) => {
-  res.send('Hello World from app.js file!')
-})
+// app.get('/', (req, res) => {
+//   res.send('Hello World from app.js file!')
+// })
 
-app.get('/example', (req, res) => {
-  res.send('example thing from app.js file!')
-})
+// app.get('/example', (req, res) => {
+//   res.send('example thing from app.js file!')
+// })
 
-app.get('/name', (req, res) => {
-  const data = {name: 'STAANNNN'};
-  res.send(data);
-});
+// app.get('/name', (req, res) => {
+//   const data = {name: 'STAANNNN'};
+//   res.send(data);
+// });
 
 if (process.env.NODE_ENV === "production") {
   // serve static content(from when you run `npm run build`. aim for the index.html in your 'build' folder)
