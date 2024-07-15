@@ -116,6 +116,7 @@ export default function Details() {
     // eslint-disable-next-line no-unused-vars
     const commentAdd = await axios.post(`/details/${book_id}`, userData)
       .then(response => {
+        console.log("comment added from Details.js line 119 : ", response)
         if (response.status === 202) alert(response.data)
         // base case that user already commented. handled in the backend with an alert to the frontend on status code 202 again? 
         // on success, render the new comment, rating, and user's first name onto the page.

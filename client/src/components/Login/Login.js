@@ -20,6 +20,7 @@ export default function Login() {
 
     return await axios.post(`/login`, data)
       .then(response => {
+        console.log("Login.js repsonse: ", response)
         if (response.status === 202) {
           alert(response.data)
         } else {

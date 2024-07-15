@@ -102,7 +102,7 @@ router.get('/createtables', async (req, res) => {
 //     comment VARCHAR
 // );`)
 
-console.log(await pool.query('SELECT table_schema, table_name FROM information_schema.tables'))
+  console.log(await pool.query('SELECT table_schema, table_name FROM information_schema.tables'))
 
 });
 
