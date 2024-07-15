@@ -4,6 +4,7 @@ import { useLocation, Redirect, NavLink } from 'react-router-dom';
 import { loginAction } from '../redux/sessionReducer';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+import axiosCustom from '../../axiosConfig';
 
 export default function Login() {
   const location = useLocation();
@@ -18,7 +19,7 @@ export default function Login() {
     }
     // console.log(data);
 
-    return await axios.post(`/login`, data)
+    return await axiosCustom.post(`/login`, data)
       .then(response => {
         console.log("Login.js repsonse: ", response)
         if (response.status === 202) {

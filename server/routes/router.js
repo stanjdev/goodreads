@@ -1,14 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const pool = require('../db');
-const cors = require('cors');
 const path = require('path');
 
 require("dotenv").config();
 const apiKey = process.env.GOODREADS_APIKEY;
-
-
-router.use(cors());
 
 // Connected routers:
 // we're using the searchRouter middleware!

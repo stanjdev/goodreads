@@ -12,8 +12,6 @@ const app = express();
 // server configuration
 const PORT = process.env.PORT || 5000;
 
-// AWS Lambda Function URL https://4iy5xxbqa7iirxjkshgzv6tiwy0pmmzf.lambda-url.us-west-1.on.aws/ 
-
 //process.env.PORT
 //process.env.NODE_ENV => production or undefined
 
