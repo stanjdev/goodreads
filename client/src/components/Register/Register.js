@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axiosCustom from '../../axiosConfig';
+import axios from 'axios';
 import { Redirect, NavLink } from 'react-router-dom';
 
 export default function Register() {
@@ -19,7 +19,7 @@ export default function Register() {
       return;
     }
     
-    return await axiosCustom.post('/register', data)
+    return await axios.post('/register', data)
       .then(response => {
         if (response.status === 202) {
           alert(response.data)
