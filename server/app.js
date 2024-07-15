@@ -21,12 +21,13 @@ const PORT = process.env.PORT || 5000;
 // anytime we hit any route, parse/convert any req.body to json so we can use the data.
 app.use(bodyParser.json());
 
-const corsOptions = {
-  origin: ["https://stanjeong.vercel.app/", "http://127.0.0.1:3000"]
-};
+// const corsOptions = {
+//   origin: ["https://stanjeong.vercel.app/", "http://127.0.0.1:3000"]
+// };
 
 // This will bypass CORS error when doing fetch request from a different client to this server.
-app.use(cors(corsOptions))
+// app.use(cors(corsOptions))
+app.use(cors())
 
 
 app.get('/', (req, res) => {

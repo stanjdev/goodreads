@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import axiosCustom from '../../axiosConfig';
 import { Redirect, NavLink } from 'react-router-dom';
 
-const base_url = process.env.REACT_APP_API_URI
-
 export default function Register() {
   const [success, setSuccess] = useState(false);
 
@@ -21,7 +19,7 @@ export default function Register() {
       return;
     }
     
-    return await axiosCustom.post(base_url + '/register', data)
+    return await axiosCustom.post('/register', data)
       .then(response => {
         if (response.status === 202) {
           alert(response.data)
