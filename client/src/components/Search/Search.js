@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import axios from 'axios';
+import axiosCustom from '../../axiosConfig';
 import { Redirect, useLocation } from 'react-router-dom';
 import FlashMessage from 'react-flash-message';
 import { useSelector } from 'react-redux';
@@ -15,7 +15,7 @@ export default function Search() {
     const data = {
       query: e.target.q.value
     }
-    return await axios.post('/search', data)
+    return await axiosCustom.post('/search', data)
       .then(response => {
         // console.log("response data from Search: " + response.data)
         setSearchResults(response.data)

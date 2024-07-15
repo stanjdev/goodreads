@@ -1,12 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import FlashMessage from 'react-flash-message';
 import { useLocation, Redirect, NavLink } from 'react-router-dom';
 import { loginAction } from '../redux/sessionReducer';
 import { useSelector, useDispatch } from 'react-redux';
-
-const base_url = process.env.REACT_APP_API_URI
-const cors_anywhere = 'https://cors-anywhere.herokuapp.com/'
+import axiosCustom from '../../axiosConfig';
 
 export default function Login() {
   const location = useLocation();
@@ -21,7 +18,7 @@ export default function Login() {
     }
     // console.log(data);
 
-    return await axios.post(`${cors_anywhere}${base_url}/login`, data)
+    return await axiosCustom.post(`/login`, data)
       .then(response => {
         if (response.status === 202) {
           alert(response.data)

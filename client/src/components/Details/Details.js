@@ -2,9 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import Logo from './goodreads.png';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
 import "./Details.css";
 import Comment from '../Comment/Comment';
+import axiosCustom from '../../axiosConfig';
 
 import { useHistory } from 'react-router';
 
@@ -68,7 +68,7 @@ export default function Details() {
 // OG backend fetch for GoodReads + psql
   async function fetchData() {
     // const response = await fetch(`/details/${location.state.results.book_id}`);
-    const response = await axios.get(`/details/${book_id}`);
+    const response = await axiosCustom.get(`/details/${book_id}`);
     if (response.headers.error) {
       console.log(response.headers.error)
       alert(response.headers.error)
@@ -114,7 +114,7 @@ export default function Details() {
       userComment: userComment
     }
     // eslint-disable-next-line no-unused-vars
-    const commentAdd = await axios.post(`/details/${book_id}`, userData)
+    const commentAdd = await axiosCustom.post(`/details/${book_id}`, userData)
       .then(response => {
         if (response.status === 202) alert(response.data)
         // base case that user already commented. handled in the backend with an alert to the frontend on status code 202 again? 

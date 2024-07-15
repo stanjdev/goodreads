@@ -3,8 +3,8 @@ import "./NavBar.css"
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutAction } from '../redux/sessionReducer';
 
-import axios from 'axios';
 import icon from '../../imgs/books.png'
+import axiosCustom from '../../axiosConfig';
 
 import { NavLink, Redirect } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
@@ -31,7 +31,7 @@ export default function NavBar() {
     }
     // console.log(data.query)
     e.target.reset();
-    return await axios.post('/search', data)
+    return await axiosCustom.post('/search', data)
       .then(response => {
         // console.log(response.data)
         setSearchResults(response.data)
