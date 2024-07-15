@@ -41,7 +41,7 @@ app.get('/name', (req, res) => {
   res.send(data);
 });
 
-// if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
   // serve static content(from when you run `npm run build`. aim for the index.html in your 'build' folder)
   app.use(express.static(path.join(__dirname, "../client/build")));
   // app.use("/", express.static("./client/build"))
@@ -68,7 +68,7 @@ app.get('/name', (req, res) => {
   app.get('/details', (req, res, next) => {
     res.sendFile(path.join(__dirname, "../client", "build", "index.html"));
   })
-// }
+}
 
 const router = require("./routes/router");
 // we're using the router middleware!
