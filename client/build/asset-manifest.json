@@ -1,26 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.1d09c4e8.chunk.css",
-    "main.js": "/static/js/main.0ecac46f.chunk.js",
-    "main.js.map": "/static/js/main.0ecac46f.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.cd84759a.js",
-    "runtime-main.js.map": "/static/js/runtime-main.cd84759a.js.map",
-    "static/css/2.ff645aaf.chunk.css": "/static/css/2.ff645aaf.chunk.css",
-    "static/js/2.bf958435.chunk.js": "/static/js/2.bf958435.chunk.js",
-    "static/js/2.bf958435.chunk.js.map": "/static/js/2.bf958435.chunk.js.map",
+    "main.css": "/static/css/main.dc079174.css",
+    "main.js": "/static/js/main.7db8a18c.js",
+    "static/media/books-bg.jpg": "/static/media/books-bg.aa71f20c75d0525c99fe.jpg",
+    "static/media/goodreadslogobanner.png": "/static/media/goodreadslogobanner.32254c8ab2dbc6ebe84f.png",
     "index.html": "/index.html",
-    "precache-manifest.b7d177cb7b3d96246190e51ff1742bb0.js": "/precache-manifest.b7d177cb7b3d96246190e51ff1742bb0.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.ff645aaf.chunk.css.map": "/static/css/2.ff645aaf.chunk.css.map",
-    "static/css/main.1d09c4e8.chunk.css.map": "/static/css/main.1d09c4e8.chunk.css.map",
-    "static/js/2.bf958435.chunk.js.LICENSE.txt": "/static/js/2.bf958435.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/static/media/books-bg.db8ccbb4.jpg"
+    "main.dc079174.css.map": "/static/css/main.dc079174.css.map",
+    "main.7db8a18c.js.map": "/static/js/main.7db8a18c.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.cd84759a.js",
-    "static/css/2.ff645aaf.chunk.css",
-    "static/js/2.bf958435.chunk.js",
-    "static/css/main.1d09c4e8.chunk.css",
-    "static/js/main.0ecac46f.chunk.js"
+    "static/css/main.dc079174.css",
+    "static/js/main.7db8a18c.js"
   ]
 }
