@@ -1,4 +1,3 @@
-// import express (after npm install express)
 const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
@@ -12,7 +11,6 @@ const app = express();
 // server configuration
 const PORT = process.env.PORT || 5000;
 
-//process.env.PORT
 //process.env.NODE_ENV => production or undefined
 
 // MIDDLEWARE
@@ -25,9 +23,10 @@ app.use(bodyParser.json());
 
 // This will bypass CORS error when doing fetch request from a different client to this server.
 // app.use(cors(corsOptions))
-app.use(cors())
+app.use(cors());
 
 
+// // ORDER MATTERS!
 // app.get('/', (req, res) => {
 //   res.send('Hello World from app.js file!')
 // })
@@ -37,7 +36,7 @@ app.use(cors())
 // })
 
 // app.get('/name', (req, res) => {
-//   const data = {name: 'STAANNNN'};
+//   const data = {name: 'STANN'};
 //   res.send(data);
 // });
 
@@ -60,18 +59,13 @@ if (process.env.NODE_ENV === "production") {
   app.get('/register', (req, res, next) => {
     res.sendFile(path.join(__dirname, "../client", "build", "index.html"));
   })
-
-  // app.get('/details/:book_id', (req, res, next) => {
-  //   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-  // })
-  
   app.get('/details', (req, res, next) => {
     res.sendFile(path.join(__dirname, "../client", "build", "index.html"));
   })
 }
 
+// Router Middleware
 const router = require("./routes/router");
-// we're using the router middleware!
 app.use(router);
 
 

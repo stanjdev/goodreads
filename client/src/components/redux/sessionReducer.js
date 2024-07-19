@@ -30,7 +30,7 @@ export default function sessionReducer(state = initialState, action) {
   switch(action.type) {
     case LOGIN:
       return {
-        loggedIn: true, 
+        loggedIn: true,
         name: action.payloadName,
         email: action.payloadEmail,
         userid: action.payloadUserid
@@ -39,8 +39,8 @@ export default function sessionReducer(state = initialState, action) {
       localStorage.clear();
       sessionStorage.clear();
       return {
-        loggedIn: false, 
-        name: "", 
+        loggedIn: false,
+        name: "",
         email: "",
         userid: ""
       }
@@ -48,4 +48,3 @@ export default function sessionReducer(state = initialState, action) {
       return state;
   }
 }
-

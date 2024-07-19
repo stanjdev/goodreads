@@ -17,15 +17,13 @@ export default function Login() {
       email: e.target.email.value,
       password: e.target.password.value
     }
-    // console.log(data);
 
     return await axiosCustom.post(`/login`, data)
       .then(response => {
-        console.log("Login.js repsonse: ", response)
+        console.log("Login.js response: ", response)
         if (response.status === 202) {
           alert(response.data)
         } else {
-          // console.log(response.data);
           dispatch(loginAction(response.data.firstname, response.data.email, response.data.userid));
           // dispatch to set login reducer to be true from here? 
         }
@@ -72,4 +70,4 @@ export default function Login() {
       </div>
     </div>
   )
-}
+};

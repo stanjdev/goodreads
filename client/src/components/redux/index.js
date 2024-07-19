@@ -1,4 +1,4 @@
-import { createStore, combineReducers } from 'redux'; // but this is the vanillaJS way? just use react-redux??? 
+import { createStore, combineReducers } from 'redux'; // but this is the vanillaJS way? just use react-redux??
 // import separate reducers if there are many
 import sessionReducer from './sessionReducer';
 
@@ -36,7 +36,6 @@ const myStore = createStore(
 );
 
 myStore.subscribe(() => {
-  // console.log(myStore.getState())
   saveToSessionStorage(myStore.getState());
 });
 

@@ -29,15 +29,11 @@ export default function NavBar() {
     const data = {
       query: e.target.input_search.value
     }
-    // console.log(data.query)
     e.target.reset();
     return await axios.post('/search', data)
       .then(response => {
-        // console.log(response.data)
         setSearchResults(response.data)
       })
-      // .then(res => console.log("res received back!", res))
-      // .catch(error => console.log(error))
   }
 
 
@@ -45,15 +41,11 @@ export default function NavBar() {
       <Navbar id="Navbar" collapseOnSelect expand="lg" bg="dark" variant="dark" >
         <NavLink id="brand" to="/" className="animateMe navbar-brand animate__animated animate__lightSpeedInRight" style={{display: 'flex', justifyContent: "center", alignItems: 'center'}}><img src={icon} alt="books icon" style={{height: 26, marginRight: 7}}/> GoodReads Reviews</NavLink>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        {/* <Navbar.Toggle aria-controls="-navbar-nav"  className="order-md-1 order-0"/> */}
         <Navbar.Collapse id="responsive-navbar-nav">
 
           <Nav className="mr-auto">
           {loggedIn ? 
             <>
-              {/* <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link> */}
-
               <form className="form-inline my-2 my-lg-0 navSearchBar" onSubmit={handleSubmit} method="POST">
                 <input className="form-control mr-sm-2" name="input_search" type="search" placeholder="Search" aria-label="Search"></input>
                 <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -65,7 +57,6 @@ export default function NavBar() {
                   state: {results: searchResults}
                 }} />
               }
-
             </>
           : null }
           </Nav>
@@ -73,14 +64,6 @@ export default function NavBar() {
           <Nav>
             {loggedIn ? 
             <>
-              
-              {/* <NavDropdown title="Menu" id="collasible-nav-dropdown">
-                <NavDropdown.Item><NavLink to="/">Home</NavLink></NavDropdown.Item>
-                <NavDropdown.Item><NavLink to="/search">Search</NavLink></NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
-              </NavDropdown> */}
-
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/search">Search</Nav.Link>
 
@@ -100,5 +83,4 @@ export default function NavBar() {
         </Navbar.Collapse>
       </Navbar>
   )
-
 };

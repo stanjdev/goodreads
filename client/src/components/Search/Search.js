@@ -21,8 +21,6 @@ export default function Search() {
         console.log(`response data from Search.js search for: ${data}: ${response.data}` )
         setSearchResults(response.data)
       })
-      // .then(res => console.log("res received back!", res))
-      // .catch(error => console.log(error))
   }
   
   // eslint-disable-next-line no-lone-blocks
@@ -57,5 +55,4 @@ export default function Search() {
           </div>
       </div>
   ) : <Redirect to={{ pathname: "/login"}} /> }
-  
-}
+};

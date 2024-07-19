@@ -9,7 +9,6 @@ export default function Comment({ comment }) {
 
   const deleteComment = async userid => {
     // console.log("comment user Id: " + userid)
-    // console.log("Logged In User Id: " + currentUserId)
     try {
       if (currentUserId === userid) {
         if (window.confirm('Are you sure you wish to delete this comment?')) {

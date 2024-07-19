@@ -24,13 +24,11 @@ export default function Register() {
         if (response.status === 202) {
           alert(response.data)
         } else {
-          // console.log(response)
           setSuccess(true);
         }
       })
       .catch(err => console.log(err))
   }
-
 
   return(
       <div className="container">
@@ -51,10 +49,6 @@ export default function Register() {
                           <label>Email</label>
                             <input name="email" className="form-control" placeholder="email@" type="email" required></input>
                         </div> 
-                        {/* <div className="form-group">
-                          <label>Username</label>
-                            <input name="username" className="form-control" placeholder="username" autocomplete="off" type="username" required></input>
-                        </div> */}
                         <div className="form-group">
                           <label>Choose password</label>
                             <input name="password" className="form-control" placeholder="******" type="password" required></input>
@@ -77,4 +71,4 @@ export default function Register() {
           </div>
       </div>
   )
-}
+};

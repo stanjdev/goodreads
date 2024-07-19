@@ -7,7 +7,6 @@ export default function EditComment({commentInfo}) {
   const currentUserId = useSelector(state => state.sessionReducer.userid);
   const [ratingOption, setRatingOption] = useState(commentInfo.rating);
   const [comment, setComment] = useState(commentInfo.comment || "");
-  // console.log(commentInfo)
 
   const handleChangeRating = (e) => {
     setRatingOption(e.target.value);
@@ -38,7 +37,6 @@ export default function EditComment({commentInfo}) {
 
   return (
     <Fragment>
-      {/* <button onClick={() => editComment(userid)} className="btn btn-warning mr-2 float-right">Edit</button> */}
       <button type="button" className="btn btn-sm btn-warning m-1 " data-toggle="modal" data-target={`#review_id${commentInfo.review_id}`}>
           Edit
       </button>

@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,aAAa,CAAC;EACZ,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;CAIxB;;AAND,AAGE,aAHW,CAGX,MAAM,CAAC;EACL,UAAU,EAAE,MAAM;CACnB",
-    "sources": [
-        "NavBar.scss"
-    ],
-    "names": [],
-    "file": "NavBar.css"
-}
+{"version":3,"sources":["NavBar.scss","NavBar.css"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,uBAAA;ACCF;ADAE;EACE,kBAAA;ACEJ","file":"NavBar.css"}

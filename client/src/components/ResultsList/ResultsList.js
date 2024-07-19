@@ -49,4 +49,4 @@ export default function ResultsList() {
       </div>
     </div>
   ) : <Redirect to={{ pathname: "/login" }} />}
-}
+};

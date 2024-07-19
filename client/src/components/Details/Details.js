@@ -8,7 +8,6 @@ import axios from 'axios';
 
 import { useHistory } from 'react-router';
 
-
 // eslint-disable-next-line no-unused-vars
 const apiKey = process.env.REACT_APP_GOODREADS_APIKEY;
 
@@ -54,7 +53,6 @@ export default function Details() {
 
     if (isMounted.current && loggedIn) {
       fetchData(); // for GETTING comments and book data
-      // console.log(bookInfo)
     }
 
     return function cleanup() {
@@ -141,8 +139,6 @@ export default function Details() {
     e.preventDefault();
     addComment();
   }
-
-  // console.log(comments)
 
   // eslint-disable-next-line no-lone-blocks
   {return loggedIn ? (

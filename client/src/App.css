@@ -1,21 +1,18 @@
 @media (min-width: 768px), (max-width: 768px) {
   body {
     text-align: center;
-    background: -webkit-gradient(linear, left top, right top, from(#ebebf9), to(blanchedalmond)), url("../src/imgs/books-bg.jpg") fixed;
-    background: linear-gradient(to right, #ebebf9, blanchedalmond), url("../src/imgs/books-bg.jpg") fixed;
+    background: linear-gradient(to right, rgb(235, 235, 249), blanchedalmond), url("../src/imgs/books-bg.jpg") fixed;
     background-position: center;
     background-blend-mode: multiply;
     -ms-background-size: cover;
     background-size: cover;
   }
 }
-
 @media screen and (min-width: 992px) {
   .welcome-sm {
     display: none;
   }
 }
-
 @media screen and (min-width: 1px) and (max-width: 992px) and (max-height: 1000px) {
   .welcome-lg {
     display: none;
@@ -24,16 +21,9 @@
     display: none;
   }
   .dropdown-menu {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: space-evenly;
     text-align: center;
     height: 200px;
   }
@@ -41,14 +31,12 @@
     display: none;
   }
 }
-
 @media screen and (min-width: 1px) and (max-width: 550px) {
   .bannerlogo {
     width: 88vw;
   }
   body {
-    background: -webkit-gradient(linear, left top, right top, from(#ebebf9), to(blanchedalmond)), url("../src/imgs/books-bg.jpg") fixed;
-    background: linear-gradient(to right, #ebebf9, blanchedalmond), url("../src/imgs/books-bg.jpg") fixed;
+    background: linear-gradient(to right, rgb(235, 235, 249), blanchedalmond), url("../src/imgs/books-bg.jpg") fixed;
     background-position: center;
     background-blend-mode: multiply;
     -ms-background-size: cover;
@@ -65,14 +53,12 @@
     width: 100%;
   }
 }
-
 * {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .login-form, .register-form, .list {
@@ -88,7 +74,6 @@ html {
   letter-spacing: 3px;
   opacity: 0.5;
 }
-
 .title .subtitle {
   font-size: large;
 }
@@ -98,7 +83,5 @@ html {
 }
 
 .animateMe {
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-}
-/*# sourceMappingURL=App.css.map */
+}/*# sourceMappingURL=App.css.map */

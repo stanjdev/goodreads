@@ -1,7 +1,5 @@
 .detailsbg {
-  // background-color: opacify(white, 0.5);
   opacity: 0.5;
-  // margin-top: 10%;
   height: 90vh;
   width: 90vw;
   position: absolute;
@@ -11,18 +9,14 @@
   margin-top: 10%;
 }
 
-
 @media screen and (max-width: 768px) {
   .ratingsInfo {
     display: flex;
     justify-content: center;
-    // border: solid green 1px;
   }
   .goodreads_logo {
-    // border: green solid 1px;
     margin-top: -15%;
   }
-
   .reviews_title {
     margin-top: 10%;
   }

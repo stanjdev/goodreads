@@ -1,7 +1,6 @@
 const express = require('express');
 const detailsRouter = new express.Router();
 const pool = require('../db');
-// const fetch = require('node-fetch');
 const fetch = require('isomorphic-fetch');
 const path = require('path');
 
@@ -169,8 +168,6 @@ detailsRouter.post('/:book_id', (req, res, next) => {
     req.body.userComment
   ]
 
-  // console.log(user);
-
   // user_reviewed_before
   pool.query(`SELECT * FROM reviews 
               WHERE user_id = $1
@@ -221,6 +218,5 @@ detailsRouter.delete('/:book_id/:user_id', async (req, res, next) => {
     console.error(error);
   }
 });
-
 
 module.exports = detailsRouter;

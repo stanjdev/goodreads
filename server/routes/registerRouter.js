@@ -35,7 +35,7 @@ registerRouter.post('/', (req, res, next) => {
         (q_err, q_res) => {
           if (q_err) next(q_err); 
           console.log('Registration successful.')
-          res.status(200).send('Registration successful!') // But, it sends the info in the res... confidential pw...
+          res.status(200).send('Registration successful!') // But, it sends the info in the res. confidential pw..
       })
     }
   });

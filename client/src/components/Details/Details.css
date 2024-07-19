@@ -11,12 +11,8 @@
 
 @media screen and (max-width: 768px) {
   .ratingsInfo {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    justify-content: center;
   }
   .goodreads_logo {
     margin-top: -15%;
@@ -24,5 +20,4 @@
   .reviews_title {
     margin-top: 10%;
   }
-}
-/*# sourceMappingURL=Details.css.map */
+}/*# sourceMappingURL=Details.css.map */

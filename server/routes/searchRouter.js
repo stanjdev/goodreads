@@ -2,7 +2,6 @@ const express = require('express');
 const searchRouter = express.Router();
 const pool = require('../db');
 
-
 /* SEARCH Router */
 
 // searchRouter.get('/' , (req, res, next) => {
@@ -11,8 +10,6 @@ const pool = require('../db');
 
 searchRouter.post('/', (req, res, next) => {
   let keywords = req.body.query;
-  // console.log(keywords, "from front end!");
-  // User must be logged in. Login Required
   // render the search page
   const sql = `SELECT * FROM books WHERE 
                 LOWER(isbn) LIKE LOWER($1) OR
